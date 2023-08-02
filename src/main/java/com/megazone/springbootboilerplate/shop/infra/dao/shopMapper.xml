@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.megazone.springbootboilerplate.shop.infra.dao.ShopDao">
+    <resultMap id="shopRowMapper" type="Shop">
+        <result property="id" column="shop_id"/>
+        <result property="name" column="shop_name"/>
+    </resultMap>
+
+<!--    <insert id="save" parameterType="Shop" useGeneratedKeys="true" keyProperty="id">-->
+<!--        INSERT INTO shop (shop_name)-->
+<!--        VALUES (#{name})-->
+<!--    </insert>-->
+</mapper>
