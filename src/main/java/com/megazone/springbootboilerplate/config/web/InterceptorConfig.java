@@ -1,7 +1,7 @@
-package com.megazone.springbootboilerplate.config;
+package com.megazone.springbootboilerplate.config.web;
 
-import com.megazone.springbootboilerplate.interceptor.LogInterceptor;
-import com.megazone.springbootboilerplate.interceptor.MetricInterceptor;
+import com.megazone.springbootboilerplate.config.web.interceptor.LogInterceptor;
+import com.megazone.springbootboilerplate.config.web.interceptor.MetricInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
