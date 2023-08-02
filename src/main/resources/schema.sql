@@ -1,0 +1,5 @@
+CREATE TABLE shop
+(
+    shop_id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+    shop_name VARCHAR(255) NOT NULL
+);
