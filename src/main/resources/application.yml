@@ -1,6 +1,18 @@
 spring:
   application:
     name: shop
+  h2:
+    console:
+      enabled: true
+  datasource:
+    datasourcePair:
+      default:
+        reader:
+          url: jdbc:h2:mem:testdb
+          username: sa
+        writer:
+          url: jdbc:h2:mem:testdb
+          username: sa
 
 logging:
   pattern:
