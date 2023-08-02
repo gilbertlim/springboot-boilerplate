@@ -32,6 +32,23 @@ logging:
   #      resultset: off
   #      connection: off
 
+# 사용할 actuator endpoint 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  tracing:
+    sampling:
+      probability: 1.0 # 모든 tracing 기록
+
+#  # prometheus http_server_requests_seconds_bucket metric 활성화
+#  metrics:
+#    distribution:
+#      percentiles-histogram:
+#        http:
+#          server:
+#            requests: true
 
 #   # file logging
 #  file:

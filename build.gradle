@@ -33,6 +33,7 @@ dependencies {
     implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion"
     implementation 'org.springframework.boot:spring-boot-starter-actuator' // tracer dependency
     implementation 'io.micrometer:micrometer-tracing-bridge-brave' // tracer
+    implementation 'io.micrometer:micrometer-registry-prometheus' // for prometheus metrics
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
