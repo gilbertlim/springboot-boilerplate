@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: shop
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}][%X{userId:-}][%X{userIp:-}]"
+  level:
+    com.megazone.springbootboilerplate: debug
+  #    root: info
+  #    com.megazone.com.megazone.springbootboilerplate.feign: debug
+  #    org:
+  #      springframework:
+  #        web: info
+  #    jdbc:
+  #      sqlonly: off
+  #      sqltiming: debug
+  #      resultsettable: debug
+  #      audit: off
+  #      resultset: off
+  #      connection: off
+
+
+#   # file logging
+#  file:
+#    name: logs/application.log
+#  logback:
+#    rollingpolicy:
+#      file-name-pattern: logs/application-%d{yyyyMMdd}.%i.log
+#      max-history: 5
