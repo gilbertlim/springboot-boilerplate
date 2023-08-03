@@ -21,6 +21,7 @@ public class MybatisConfig {
         factoryBean.setDataSource(dataSource);
         factoryBean.setTypeAliasesPackage("com.megazone.springbootboilerplate.*.domain");
         factoryBean.setMapperLocations(context.getResources("classpath:com/megazone/springbootboilerplate/*/infra/dao/*.xml"));
+        factoryBean.setTypeHandlers(new ShopTierTypeHandler());
         return factoryBean.getObject();
     }
 }

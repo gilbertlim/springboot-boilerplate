@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +36,10 @@ public class ShopController {
     @GetMapping("/shops/{shopId}")
     public ResponseEntity<ShopResponse> findOne(@PathVariable Long shopId) {
         return ResponseEntity.ok().body(shopReadService.findById(shopId));
+    }
+
+    @PutMapping("/shops/{shopId}:{shopAction}")
+    public ResponseEntity<ShopResponse> update(@PathVariable Long shopId, @PathVariable String shopAction) {
+        return ResponseEntity.ok().body(shopWriteService.update(shopId, shopAction));
     }
 }

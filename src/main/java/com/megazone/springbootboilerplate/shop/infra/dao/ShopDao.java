@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +17,17 @@ public interface ShopDao {
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("""
-            INSERT INTO shop (shop_name)
-            VALUES (#{name})
+            INSERT INTO shop (shop_name, shop_tier)
+            VALUES (#{name}, #{tier})
             """)
     void save(Shop shop);
+
+    @Update("""
+            UPDATE shop 
+            SET shop_name = #{name}, shop_tier = #{tier}
+            WHERE shop_id = #{id}
+            """)
+    void update(Shop shop);
 
     @ResultMap("shopRowMapper")
     @Select("""

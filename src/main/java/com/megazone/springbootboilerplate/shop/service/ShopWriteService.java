@@ -20,4 +20,15 @@ public class ShopWriteService {
         shopRepository.save(shop);
         return ShopResponse.of(shop);
     }
+
+    public ShopResponse update(Long shopId, String shopAction) {
+        Shop shop = shopRepository.findById(shopId).orElseThrow();
+        switch (shopAction) {
+            case "upgrade" -> shop.upgrade();
+            case "downgrade" -> shop.downgrade();
+            default -> throw new IllegalArgumentException();
+        }
+        shopRepository.update(shop);
+        return ShopResponse.of(shop);
+    }
 }

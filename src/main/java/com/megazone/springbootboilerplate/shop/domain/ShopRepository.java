@@ -10,4 +10,6 @@ public interface ShopRepository {
     List<Shop> findAll();
 
     Optional<Shop> findById(Long id);
+
+    void update(Shop shop);
 }

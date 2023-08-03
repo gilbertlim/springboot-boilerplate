@@ -1,5 +1,6 @@
 CREATE TABLE shop
 (
     shop_id   BIGINT PRIMARY KEY AUTO_INCREMENT,
-    shop_name VARCHAR(255) NOT NULL
+    shop_name VARCHAR(255) NOT NULL,
+    shop_tier VARCHAR(255) NOT NULL
 );

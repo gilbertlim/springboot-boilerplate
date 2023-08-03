@@ -29,4 +29,9 @@ public class ShopRepositoryImpl implements ShopRepository {
     public Optional<Shop> findById(Long id) {
         return shopDao.findById(id);
     }
+
+    @Override
+    public void update(Shop shop) {
+        shopDao.update(shop);
+    }
 }

@@ -7,6 +7,7 @@
     <resultMap id="shopRowMapper" type="Shop">
         <result property="id" column="shop_id"/>
         <result property="name" column="shop_name"/>
+        <result property="tier" column="shop_tier" />
     </resultMap>
 
 <!--    <insert id="save" parameterType="Shop" useGeneratedKeys="true" keyProperty="id">-->
