@@ -2,6 +2,7 @@ package com.megazone.springbootboilerplate.config.datasource;
 
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 import javax.sql.DataSource;
 
 @RequiredArgsConstructor
+@ConditionalOnProperty("spring.datasource.datasourcePair")
 @Configuration
 public class DataSourceConfig {
 
