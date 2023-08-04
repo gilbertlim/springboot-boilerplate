@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.config.datasource;
+package com.megazone.springbootboilerplate.common.config.datasource;
 
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.config.mybatis;
+package com.megazone.springbootboilerplate.common.config.mybatis;
 
 import com.megazone.springbootboilerplate.shop.domain.tier.Bronze;
 import com.megazone.springbootboilerplate.shop.domain.tier.Gold;

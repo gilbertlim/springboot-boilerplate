@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.config.mybatis;
+package com.megazone.springbootboilerplate.common.config.mybatis;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

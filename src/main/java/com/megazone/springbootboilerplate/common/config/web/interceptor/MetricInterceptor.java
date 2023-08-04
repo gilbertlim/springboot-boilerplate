@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.config.web.interceptor;
+package com.megazone.springbootboilerplate.common.config.web.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

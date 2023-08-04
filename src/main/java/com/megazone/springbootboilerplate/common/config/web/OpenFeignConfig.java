@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.config.web;
+package com.megazone.springbootboilerplate.common.config.web;
 
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
