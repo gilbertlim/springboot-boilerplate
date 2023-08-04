@@ -34,6 +34,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator' // tracer dependency
     implementation 'io.micrometer:micrometer-tracing-bridge-brave' // tracer
     implementation 'io.micrometer:micrometer-registry-prometheus' // for prometheus metrics
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

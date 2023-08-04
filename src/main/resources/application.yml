@@ -57,3 +57,7 @@ management:
 #    rollingpolicy:
 #      file-name-pattern: logs/application-%d{yyyyMMdd}.%i.log
 #      max-history: 5
+
+feign:
+  bo:
+    base-url: http://bo.mz.com

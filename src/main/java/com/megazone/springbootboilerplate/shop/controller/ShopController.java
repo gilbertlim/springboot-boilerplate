@@ -42,4 +42,9 @@ public class ShopController {
     public ResponseEntity<ShopResponse> update(@PathVariable Long shopId, @PathVariable String shopAction) {
         return ResponseEntity.ok().body(shopWriteService.update(shopId, shopAction));
     }
+
+    @GetMapping("/shops/bo")
+    public ResponseEntity<String> getBoData() {
+        return ResponseEntity.ok().body(shopReadService.getBoData());
+    }
 }

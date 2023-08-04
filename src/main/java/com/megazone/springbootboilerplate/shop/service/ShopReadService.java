@@ -1,6 +1,7 @@
 package com.megazone.springbootboilerplate.shop.service;
 
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
+import com.megazone.springbootboilerplate.shop.infra.client.ShopFeignClient;
 import com.megazone.springbootboilerplate.shop.service.dto.response.ShopResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.List;
 public class ShopReadService {
 
     private final ShopRepository shopRepository;
+    private final ShopFeignClient client;
 
     public List<ShopResponse> findAll() {
         return shopRepository.findAll()
@@ -26,5 +28,9 @@ public class ShopReadService {
         return shopRepository.findById(id)
                 .map(ShopResponse::of)
                 .orElseThrow();
+    }
+
+    public String getBoData() {
+        return client.getData();
     }
 }
