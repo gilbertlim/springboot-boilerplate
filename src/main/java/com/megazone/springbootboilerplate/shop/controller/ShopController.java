@@ -43,8 +43,8 @@ public class ShopController {
         return ResponseEntity.ok().body(shopWriteService.update(shopId, shopAction));
     }
 
-    @GetMapping("/shops/bo")
+    @GetMapping("/shops/getBackOfficeData")
     public ResponseEntity<String> getBoData() {
-        return ResponseEntity.ok().body(shopReadService.getBoData());
+        return ResponseEntity.ok().body(shopReadService.getBackOfficeData());
     }
 }

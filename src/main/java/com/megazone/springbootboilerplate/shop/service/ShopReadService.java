@@ -1,7 +1,7 @@
 package com.megazone.springbootboilerplate.shop.service;
 
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
-import com.megazone.springbootboilerplate.shop.infra.client.ShopFeignClient;
+import com.megazone.springbootboilerplate.common.infra.client.BackOfficeFeignClient;
 import com.megazone.springbootboilerplate.shop.service.dto.response.ShopResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ShopReadService {
 
     private final ShopRepository shopRepository;
-    private final ShopFeignClient client;
+    private final BackOfficeFeignClient backOfficeFeignClient;
 
     public List<ShopResponse> findAll() {
         return shopRepository.findAll()
@@ -30,7 +30,7 @@ public class ShopReadService {
                 .orElseThrow();
     }
 
-    public String getBoData() {
-        return client.getData();
+    public String getBackOfficeData() {
+        return backOfficeFeignClient.getBackOfficeData();
     }
 }
