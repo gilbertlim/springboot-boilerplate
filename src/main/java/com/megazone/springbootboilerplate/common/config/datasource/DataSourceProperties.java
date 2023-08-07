@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.Map;
 import java.util.Optional;
 
-@ConfigurationProperties("spring.datasource")
+@ConfigurationProperties(prefix = "spring.datasource")
 public record DataSourceProperties(
     Map<String, DataSourcePair> datasourcePair
 ) {

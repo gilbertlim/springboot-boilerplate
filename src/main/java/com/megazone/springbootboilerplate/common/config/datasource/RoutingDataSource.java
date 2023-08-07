@@ -1,8 +1,6 @@
 package com.megazone.springbootboilerplate.common.config.datasource;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
@@ -11,7 +9,6 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 @Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RoutingDataSource extends AbstractRoutingDataSource {
 
     public enum Target {
@@ -34,5 +31,4 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
         log.debug("{}", Target.WRITER);
         return Target.WRITER;
     }
-
 }
