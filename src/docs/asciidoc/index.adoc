@@ -8,11 +8,11 @@
 :sectlinks:
 
 :operation-http-request-title: HTTP 요청
-:operation-http-response-title: HTTP 응답
-:operation-request-fields-title: 요청 필드
-:operation-response-fields-title: 응답 필드
-:operation-response-headers-title: 응답 헤더
 :operation-path-parameters-title: Path 변수
+:operation-request-fields-title: 요청 필드
+:operation-http-response-title: HTTP 응답
+:operation-response-headers-title: 응답 헤더
+:operation-response-fields-title: 응답 필드
 
 [[shop]]
 == Shop

@@ -27,7 +27,12 @@ public class ShopRepositoryImpl implements ShopRepository {
 
     @Override
     public Optional<Shop> findById(Long id) {
-        return shopDao.findById(id);
+        return Optional.ofNullable(shopDao.findById(id));
+    }
+
+    @Override
+    public Optional<Shop> findByName(String name) {
+        return Optional.ofNullable(shopDao.findByName(name));
     }
 
     @Override

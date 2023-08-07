@@ -11,5 +11,7 @@ public interface ShopRepository {
 
     Optional<Shop> findById(Long id);
 
+    Optional<Shop> findByName(String name);
+
     void update(Shop shop);
 }

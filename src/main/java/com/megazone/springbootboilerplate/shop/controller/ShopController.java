@@ -1,5 +1,7 @@
 package com.megazone.springbootboilerplate.shop.controller;
 
+import com.megazone.springbootboilerplate.common.dto.Response;
+import com.megazone.springbootboilerplate.common.dto.ResponseType;
 import com.megazone.springbootboilerplate.shop.service.ShopReadService;
 import com.megazone.springbootboilerplate.shop.service.ShopWriteService;
 import com.megazone.springbootboilerplate.shop.service.dto.request.ShopCreateRequest;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,28 +24,23 @@ public class ShopController {
     private final ShopReadService shopReadService;
 
     @PostMapping("/shops")
-    public ResponseEntity<ShopResponse> create(@RequestBody ShopCreateRequest request) {
+    public ResponseEntity<Response<ShopResponse>> create(@RequestBody ShopCreateRequest request) {
         ShopResponse shopResponse = shopWriteService.create(request);
-        return ResponseEntity.created(URI.create("/shops/" + shopResponse.id())).build();
+        return Response.created(ResponseType.CREATE, shopResponse, "/shops/" + shopResponse.id());
     }
 
     @GetMapping("/shops")
-    public ResponseEntity<List<ShopResponse>> findAll() {
-        return ResponseEntity.ok().body(shopReadService.findAll());
+    public ResponseEntity<Response<List<ShopResponse>>> findAll() {
+        return Response.withData(ResponseType.OK, shopReadService.findAll());
     }
 
     @GetMapping("/shops/{shopId}")
-    public ResponseEntity<ShopResponse> findOne(@PathVariable Long shopId) {
-        return ResponseEntity.ok().body(shopReadService.findById(shopId));
+    public ResponseEntity<Response<ShopResponse>> findOne(@PathVariable Long shopId) {
+        return Response.withData(ResponseType.OK, shopReadService.findById(shopId));
     }
 
     @PutMapping("/shops/{shopId}:{shopAction}")
-    public ResponseEntity<ShopResponse> update(@PathVariable Long shopId, @PathVariable String shopAction) {
-        return ResponseEntity.ok().body(shopWriteService.update(shopId, shopAction));
-    }
-
-    @GetMapping("/shops/getBackOfficeData")
-    public ResponseEntity<String> getBoData() {
-        return ResponseEntity.ok().body(shopReadService.getBackOfficeData());
+    public ResponseEntity<Response<ShopResponse>> update(@PathVariable Long shopId, @PathVariable String shopAction) {
+        return Response.withData(ResponseType.UPDATE, shopWriteService.update(shopId, shopAction));
     }
 }

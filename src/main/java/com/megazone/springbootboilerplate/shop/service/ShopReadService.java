@@ -1,5 +1,6 @@
 package com.megazone.springbootboilerplate.shop.service;
 
+import com.megazone.springbootboilerplate.common.exception.NotFoundException;
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
 import com.megazone.springbootboilerplate.common.infra.client.BackOfficeFeignClient;
 import com.megazone.springbootboilerplate.shop.service.dto.response.ShopResponse;
@@ -27,10 +28,6 @@ public class ShopReadService {
     public ShopResponse findById(Long id) {
         return shopRepository.findById(id)
                 .map(ShopResponse::of)
-                .orElseThrow();
-    }
-
-    public String getBackOfficeData() {
-        return backOfficeFeignClient.getBackOfficeData();
+                .orElseThrow(() -> new NotFoundException(id + " Shop을 찾을 수 없습니다."));
     }
 }

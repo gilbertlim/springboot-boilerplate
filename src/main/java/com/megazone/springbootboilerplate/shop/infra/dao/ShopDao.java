@@ -42,5 +42,13 @@ public interface ShopDao {
             FROM shop
             WHERE shop_id = #{id}
             """)
-    Optional<Shop> findById(@Param("id") Long id);
+    Shop findById(@Param("id") Long id);
+
+    @ResultMap("shopRowMapper")
+    @Select("""
+            SELECT * 
+            FROM shop
+            WHERE shop_name = #{name}
+            """)
+    Shop findByName(@Param("name") String name);
 }
