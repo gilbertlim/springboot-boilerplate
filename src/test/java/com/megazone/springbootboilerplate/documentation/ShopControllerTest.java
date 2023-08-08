@@ -48,9 +48,11 @@ class ShopControllerTest extends Documentation {
                 .andExpect(status().isOk())
                 .andDo(document("get-shops",
                                 responseFields(
-                                        fieldWithPath("[].id").description("Shop ID"),
-                                        fieldWithPath("[].name").description("Shop 이름"),
-                                        fieldWithPath("[].tier").description("Shop 등급")
+                                        fieldWithPath("code").description("API 응답 코드"),
+                                        fieldWithPath("message").description("API 응답 메시지"),
+                                        fieldWithPath("data[].id").description("Shop ID"),
+                                        fieldWithPath("data[].name").description("Shop 이름"),
+                                        fieldWithPath("data[].tier").description("Shop 등급")
                                 )
                         )
                 );
@@ -70,9 +72,11 @@ class ShopControllerTest extends Documentation {
                                         parameterWithName("shopId").description("Shop ID")
                                 ),
                                 responseFields(
-                                        fieldWithPath("id").description("Shop ID"),
-                                        fieldWithPath("name").description("Shop 이름"),
-                                        fieldWithPath("tier").description("Shop 등급")
+                                        fieldWithPath("code").description("API 응답 코드"),
+                                        fieldWithPath("message").description("API 응답 메시지"),
+                                        fieldWithPath("data.id").description("Shop ID"),
+                                        fieldWithPath("data.name").description("Shop 이름"),
+                                        fieldWithPath("data.tier").description("Shop 등급")
                                 )
                         )
                 );
@@ -95,6 +99,13 @@ class ShopControllerTest extends Documentation {
                                 ),
                                 responseHeaders(
                                         headerWithName("Location").description("리소스 위치")
+                                ),
+                                responseFields(
+                                        fieldWithPath("code").description("API 응답 코드"),
+                                        fieldWithPath("message").description("API 응답 메시지"),
+                                        fieldWithPath("data.id").description("Shop ID"),
+                                        fieldWithPath("data.name").description("Shop 이름"),
+                                        fieldWithPath("data.tier").description("Shop 등급")
                                 )
                         )
                 );
@@ -120,9 +131,11 @@ class ShopControllerTest extends Documentation {
                                         )
                                 ),
                                 responseFields(
-                                        fieldWithPath("id").description("Shop ID"),
-                                        fieldWithPath("name").description("Shop 이름"),
-                                        fieldWithPath("tier").description("Shop 등급")
+                                        fieldWithPath("code").description("API 응답 코드"),
+                                        fieldWithPath("message").description("API 응답 메시지"),
+                                        fieldWithPath("data.id").description("Shop ID"),
+                                        fieldWithPath("data.name").description("Shop 이름"),
+                                        fieldWithPath("data.tier").description("Shop 등급")
                                 )
                         )
                 );

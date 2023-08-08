@@ -9,9 +9,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Map;
-
-import static org.springframework.restdocs.http.HttpDocumentation.httpRequest;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.modifyHeaders;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
@@ -29,11 +26,6 @@ abstract public class Documentation {
                         .withRequestDefaults(modifyHeaders().remove("Host"), prettyPrint())
                         .withResponseDefaults(modifyHeaders().remove("Date"), prettyPrint())
                         .withResponseDefaults(modifyHeaders().remove("Vary"), prettyPrint())
-                        .and()
-                        .snippets()
-                        .withDefaults(
-                                httpRequest(Map.of("httpRequest", "HTTP 요청"))
-                        )
                 )
                 .addFilters()
                 .build();

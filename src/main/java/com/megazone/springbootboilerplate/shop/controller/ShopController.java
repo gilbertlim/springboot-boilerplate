@@ -31,6 +31,7 @@ public class ShopController {
 
     @GetMapping("/shops")
     public ResponseEntity<Response<List<ShopResponse>>> findAll() {
+        // TODO: ResponseType OK 기본으로
         return Response.withData(ResponseType.OK, shopReadService.findAll());
     }
 
