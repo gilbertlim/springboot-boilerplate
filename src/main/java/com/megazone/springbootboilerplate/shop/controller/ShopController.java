@@ -8,6 +8,7 @@ import com.megazone.springbootboilerplate.shop.service.dto.request.ShopCreateReq
 import com.megazone.springbootboilerplate.shop.service.dto.response.ShopResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,24 +25,23 @@ public class ShopController {
     private final ShopReadService shopReadService;
 
     @PostMapping("/shops")
-    public ResponseEntity<Response<ShopResponse>> create(@RequestBody ShopCreateRequest request) {
+    public ResponseEntity<Response<ShopResponse>> create(@RequestBody @Validated ShopCreateRequest request) {
         ShopResponse shopResponse = shopWriteService.create(request);
-        return Response.created(ResponseType.CREATE, shopResponse, "/shops/" + shopResponse.id());
+        return Response.created(shopResponse, "/shops/" + shopResponse.id());
     }
 
     @GetMapping("/shops")
     public ResponseEntity<Response<List<ShopResponse>>> findAll() {
-        // TODO: ResponseType OK 기본으로
-        return Response.withData(ResponseType.OK, shopReadService.findAll());
+        return Response.ok(shopReadService.findAll());
     }
 
     @GetMapping("/shops/{shopId}")
     public ResponseEntity<Response<ShopResponse>> findOne(@PathVariable Long shopId) {
-        return Response.withData(ResponseType.OK, shopReadService.findById(shopId));
+        return Response.ok(shopReadService.findById(shopId));
     }
 
     @PutMapping("/shops/{shopId}:{shopAction}")
     public ResponseEntity<Response<ShopResponse>> update(@PathVariable Long shopId, @PathVariable String shopAction) {
-        return Response.withData(ResponseType.UPDATE, shopWriteService.update(shopId, shopAction));
+        return Response.withData(shopWriteService.update(shopId, shopAction), ResponseType.UPDATE);
     }
 }

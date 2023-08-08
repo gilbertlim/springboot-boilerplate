@@ -1,8 +1,10 @@
 package com.megazone.springbootboilerplate.common.exception;
 
+import com.megazone.springbootboilerplate.common.dto.ErrorResponse;
 import com.megazone.springbootboilerplate.common.dto.Response;
 import com.megazone.springbootboilerplate.common.dto.ResponseType;
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopTierException;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -18,7 +20,12 @@ public class CustomControllerAdvice {
 
     @ExceptionHandler(BindException.class)
     public ResponseEntity<Response<Void>> error(BindException e) {
-        return Response.error(ResponseType.BAD_REQUEST, e);
+        List<ErrorResponse> errorResponses = e.getBindingResult()
+            .getFieldErrors()
+            .stream()
+            .map(ErrorResponse::of)
+            .toList();
+        return Response.error(ResponseType.BIND_ERROR, errorResponses);
     }
 
     @ExceptionHandler(ShopTierException.class)

@@ -1,6 +1,9 @@
 package com.megazone.springbootboilerplate.shop.service.dto.request;
 
+import com.megazone.springbootboilerplate.shop.service.dto.validator.ShopName;
+
 public record ShopCreateRequest(
-        String name
+    @ShopName
+    String name
 ) {
 }

@@ -9,8 +9,9 @@ public enum ResponseType {
     OK("A-2", HttpStatus.OK, "정보 조회"),
     UPDATE("A-3", HttpStatus.OK, "정보 업데이트"),
     BAD_REQUEST("E-0", HttpStatus.BAD_REQUEST, "요청이 올바르지 않음"),
-    NOT_FOUND("E-1", HttpStatus.NOT_FOUND, "정보를 찾을 수 없음"),
-    DUPLICATE("E-2", HttpStatus.CONFLICT, "중복된 데이터");
+    BIND_ERROR("E-1", HttpStatus.BAD_REQUEST, "바인딩 에러"),
+    NOT_FOUND("E-2", HttpStatus.NOT_FOUND, "정보를 찾을 수 없음"),
+    DUPLICATE("E-3", HttpStatus.CONFLICT, "중복된 데이터");
 
     private final String code;
     private final HttpStatus status;
