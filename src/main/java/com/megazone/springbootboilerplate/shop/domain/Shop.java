@@ -1,5 +1,6 @@
 package com.megazone.springbootboilerplate.shop.domain;
 
+import com.megazone.springbootboilerplate.common.event.Events;
 import com.megazone.springbootboilerplate.shop.domain.tier.Bronze;
 import com.megazone.springbootboilerplate.shop.domain.tier.ShopTier;
 import lombok.AccessLevel;
@@ -21,7 +22,11 @@ public class Shop {
 
     public void upgrade() {
         tier = tier.up();
+        Events.raise(new ShopTierEvent(id, "upgrade"));
     }
 
-    public void downgrade() {tier = tier.down();}
+    public void downgrade() {
+        tier = tier.down();
+        Events.raise(new ShopTierEvent(id, "downgrade"));
+    }
 }
