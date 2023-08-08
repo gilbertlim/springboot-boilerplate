@@ -5,15 +5,19 @@ import com.megazone.springbootboilerplate.common.dto.ResponseType;
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopTierException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class CustomControllerAdvice {
-
-
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Response<Void>> error(IllegalArgumentException e) {
+        return Response.error(ResponseType.BAD_REQUEST, e);
+    }
+
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity<Response<Void>> error(BindException e) {
         return Response.error(ResponseType.BAD_REQUEST, e);
     }
 

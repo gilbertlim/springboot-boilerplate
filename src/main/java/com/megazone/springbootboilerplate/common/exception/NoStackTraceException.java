@@ -6,6 +6,10 @@ public abstract class NoStackTraceException extends RuntimeException {
         super(message);
     }
 
+    public NoStackTraceException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
     @Override
     public synchronized Throwable fillInStackTrace() {
         return this;

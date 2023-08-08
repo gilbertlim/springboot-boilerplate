@@ -15,7 +15,7 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
         WRITER, READER
     }
 
-    public RoutingDataSource(@NotNull DataSource readerDataSource,@NotNull DataSource writerDataSource) {
+    public RoutingDataSource(@NotNull DataSource readerDataSource, @NotNull DataSource writerDataSource) {
         Map<Object, Object> dataSources = Map.of(Target.WRITER, writerDataSource, Target.READER, readerDataSource);
         setTargetDataSources(dataSources);
         setDefaultTargetDataSource(writerDataSource);

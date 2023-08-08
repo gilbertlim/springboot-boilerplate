@@ -10,10 +10,9 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper
-public interface ShopDao {
+public interface ShopMapper {
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("""

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.megazone.springbootboilerplate.shop.infra.dao.ShopDao">
+<mapper namespace="com.megazone.springbootboilerplate.shop.infra.dao.ShopMapper">
     <resultMap id="shopRowMapper" type="Shop">
         <result property="id" column="shop_id"/>
         <result property="name" column="shop_name"/>

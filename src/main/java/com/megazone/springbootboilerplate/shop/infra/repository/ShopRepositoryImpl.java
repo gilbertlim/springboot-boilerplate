@@ -2,7 +2,7 @@ package com.megazone.springbootboilerplate.shop.infra.repository;
 
 import com.megazone.springbootboilerplate.shop.domain.Shop;
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
-import com.megazone.springbootboilerplate.shop.infra.dao.ShopDao;
+import com.megazone.springbootboilerplate.shop.infra.dao.ShopMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -12,31 +12,31 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Repository
 public class ShopRepositoryImpl implements ShopRepository {
-    private final ShopDao shopDao;
+    private final ShopMapper shopMapper;
 
     @Override
     public Shop save(Shop shop) {
-        shopDao.save(shop);
+        shopMapper.save(shop);
         return shop;
     }
 
     @Override
     public List<Shop> findAll() {
-        return shopDao.findAll();
+        return shopMapper.findAll();
     }
 
     @Override
     public Optional<Shop> findById(Long id) {
-        return Optional.ofNullable(shopDao.findById(id));
+        return Optional.ofNullable(shopMapper.findById(id));
     }
 
     @Override
     public Optional<Shop> findByName(String name) {
-        return Optional.ofNullable(shopDao.findByName(name));
+        return Optional.ofNullable(shopMapper.findByName(name));
     }
 
     @Override
     public void update(Shop shop) {
-        shopDao.update(shop);
+        shopMapper.update(shop);
     }
 }

@@ -9,6 +9,7 @@ public record Response<T>(
     String message,
     @JsonInclude(JsonInclude.Include.NON_NULL)
     T data
+    // TODO: error 필드 추가
 ) {
     public static <T> ResponseEntity<Response<T>> created(ResponseType responseType, T data, String locationPath) {
         Response<T> response = new Response<>(responseType.getCode(), responseType.getMessage(), data);
@@ -16,7 +17,7 @@ public record Response<T>(
     }
 
     public static <T> ResponseEntity<Response<T>> withData(ResponseType responseType, T data) {
-        return withData(responseType, responseType.getStatus(), data);
+        return withData(responseType, responseType.getStatus().value(), data);
     }
 
     public static <T> ResponseEntity<Response<T>> withData(ResponseType responseType, int status, T data) {
@@ -24,7 +25,7 @@ public record Response<T>(
     }
 
     public static ResponseEntity<Response<Void>> error(ResponseType responseType, Exception e) {
-        return error(responseType, responseType.getStatus(), e);
+        return error(responseType, responseType.getStatus().value(), e);
     }
 
     public static ResponseEntity<Response<Void>> error(ResponseType responseType, int status, Exception e) {

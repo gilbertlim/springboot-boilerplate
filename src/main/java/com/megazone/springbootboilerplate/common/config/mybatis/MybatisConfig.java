@@ -6,12 +6,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @MapperScan(basePackages = "com.megazone.springbootboilerplate.*.infra.dao")
-@EnableTransactionManagement
 @Configuration
 public class MybatisConfig {
 
