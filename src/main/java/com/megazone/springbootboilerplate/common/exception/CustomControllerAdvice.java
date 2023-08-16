@@ -1,6 +1,6 @@
 package com.megazone.springbootboilerplate.common.exception;
 
-import com.megazone.springbootboilerplate.common.dto.ErrorResponse;
+import com.megazone.springbootboilerplate.common.dto.BindErrorResponse;
 import com.megazone.springbootboilerplate.common.dto.Response;
 import com.megazone.springbootboilerplate.common.dto.ResponseType;
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopTierException;
@@ -20,17 +20,17 @@ public class CustomControllerAdvice {
 
     @ExceptionHandler(BindException.class)
     public ResponseEntity<Response<Void>> error(BindException e) {
-        List<ErrorResponse> errorResponses = e.getBindingResult()
+        List<BindErrorResponse> bindErrorResponses = e.getBindingResult()
             .getFieldErrors()
             .stream()
-            .map(ErrorResponse::of)
+            .map(BindErrorResponse::of)
             .toList();
-        return Response.error(ResponseType.BIND_ERROR, errorResponses);
+        return Response.error(ResponseType.BIND_ERROR, bindErrorResponses);
     }
 
     @ExceptionHandler(ShopTierException.class)
     public ResponseEntity<Response<Void>> error(ShopTierException e) {
-        return Response.of("T-1", e.getMessage(), HttpStatus.BAD_REQUEST.value(), null);
+        return Response.of("T-1", e.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
 
     @ExceptionHandler(DuplicateDataException.class)

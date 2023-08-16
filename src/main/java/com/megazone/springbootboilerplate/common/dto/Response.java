@@ -11,14 +11,14 @@ public record Response<T>(
     @JsonInclude(JsonInclude.Include.NON_NULL)
     T data,
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    List<ErrorResponse> errors
+    List<BindErrorResponse> errors
 ) {
 
     public Response(String code, String message, T data) {
         this(code, message, data, null);
     }
 
-    public Response(String code, String message, List<ErrorResponse> error) {
+    public Response(String code, String message, List<BindErrorResponse> error) {
         this(code, message, null, error);
     }
 
@@ -39,16 +39,8 @@ public record Response<T>(
         return of(responseType.getCode(), responseType.getMessage(), status, data);
     }
 
-    public static ResponseEntity<Response<Void>> error(ResponseType responseType, List<ErrorResponse> errorResponses) {
-        return of(responseType.getCode(), responseType.getMessage(), responseType.getStatus().value(), errorResponses);
-    }
-
-    public static ResponseEntity<Response<Void>> error(ResponseType responseType, Exception e) {
-        return error(responseType, responseType.getStatus().value(), e);
-    }
-
-    public static ResponseEntity<Response<Void>> error(ResponseType responseType, int status, Exception e) {
-        return of(responseType.getCode(), e.getMessage(), status, null);
+    public static <T> ResponseEntity<Response<T>> of(String code, String message, int status) {
+        return of(code, message, status, null);
     }
 
     public static <T> ResponseEntity<Response<T>> of(String code, String message, int status, T data) {
@@ -56,8 +48,20 @@ public record Response<T>(
         return ResponseEntity.status(status).body(response);
     }
 
-    public static <T> ResponseEntity<Response<T>> of(String code, String message, int status, List<ErrorResponse> error) {
-        Response<T> response = new Response<>(code, message, error);
+    public static ResponseEntity<Response<Void>> error(ResponseType responseType, Exception e) {
+        return error(responseType, responseType.getStatus().value(), e);
+    }
+
+    public static ResponseEntity<Response<Void>> error(ResponseType responseType, int status, Exception e) {
+        return error(responseType.getCode(), e.getMessage(), status, null);
+    }
+
+    public static ResponseEntity<Response<Void>> error(ResponseType responseType, List<BindErrorResponse> bindErrors) {
+        return error(responseType.getCode(), responseType.getMessage(), responseType.getStatus().value(), bindErrors);
+    }
+
+    public static <T> ResponseEntity<Response<T>> error(String code, String message, int status, List<BindErrorResponse> bindErrors) {
+        Response<T> response = new Response<>(code, message, bindErrors);
         return ResponseEntity.status(status).body(response);
     }
 }
