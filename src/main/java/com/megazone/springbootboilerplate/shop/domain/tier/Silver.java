@@ -13,6 +13,6 @@ public class Silver implements ShopTier {
 
     @Override
     public String getCode() {
-        return "silver";
+        return "Silver";
     }
 }

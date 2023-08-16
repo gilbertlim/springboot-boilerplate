@@ -24,9 +24,9 @@ public class ShopTierTypeHandler extends BaseTypeHandler<ShopTier> {
     public ShopTier getNullableResult(ResultSet rs, String columnName) throws SQLException {
         String code = rs.getString(columnName);
         return switch (code) {
-            case "gold" -> new Gold();
-            case "silver" -> new Silver();
-            case "bronze" -> new Bronze();
+            case "Gold" -> new Gold();
+            case "Silver" -> new Silver();
+            case "Bronze" -> new Bronze();
             default -> new Bronze();
         };
     }

@@ -15,14 +15,14 @@ public class EnumTypeHandler extends BaseTypeHandler<ShopTierType> {
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, ShopTierType parameter, JdbcType jdbcType) throws SQLException {
-        ps.setString(i, parameter.name());
+        ps.setString(i, parameter.getCode());
     }
 
     @Override
     public ShopTierType getNullableResult(ResultSet rs, String columnName) throws SQLException {
         String code = rs.getString(columnName);
         return Arrays.stream(ShopTierType.values())
-            .filter(it -> it.name().equals(code))
+            .filter(it -> it.getCode().equals(code))
             .findAny()
             .orElse(ShopTierType.BRONZE);
     }

@@ -1,9 +1,11 @@
 package com.megazone.springbootboilerplate.shop.domain.tier;
 
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopTierException;
+import lombok.Getter;
 
 public enum ShopTierType implements ShopTierSpec {
     BRONZE(
+        "B",
         new ShopTierSpec() {
             @Override
             public ShopTierType up() {
@@ -16,6 +18,7 @@ public enum ShopTierType implements ShopTierSpec {
             }
         }
     ), SILVER(
+        "S",
         new ShopTierSpec() {
             @Override
             public ShopTierType up() {
@@ -28,6 +31,7 @@ public enum ShopTierType implements ShopTierSpec {
             }
         }
     ), GOLD(
+        "G",
         new ShopTierSpec() {
             @Override
             public ShopTierType up() {
@@ -42,9 +46,12 @@ public enum ShopTierType implements ShopTierSpec {
     );
 
 
+    @Getter
+    private final String code;
     private final ShopTierSpec status;
 
-    ShopTierType(ShopTierSpec status) {
+    ShopTierType(String code, ShopTierSpec status) {
+        this.code = code;
         this.status = status;
     }
 

@@ -15,6 +15,6 @@ public class Gold implements ShopTier {
 
     @Override
     public String getCode() {
-        return "gold";
+        return "Gold";
     }
 }
