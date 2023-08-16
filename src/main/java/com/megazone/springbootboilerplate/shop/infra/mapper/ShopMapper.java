@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.shop.infra.dao;
+package com.megazone.springbootboilerplate.shop.infra.mapper;
 
 import com.megazone.springbootboilerplate.shop.domain.Shop;
 import org.apache.ibatis.annotations.Insert;

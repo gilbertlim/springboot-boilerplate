@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.config.mybatis;
+package com.megazone.springbootboilerplate.shop.infra.mapper;
 
 import com.megazone.springbootboilerplate.shop.domain.tier.Bronze;
 import com.megazone.springbootboilerplate.shop.domain.tier.Gold;
@@ -11,7 +11,9 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ShopTierTypeHandler extends BaseTypeHandler<ShopTier> {
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, ShopTier parameter, JdbcType jdbcType) throws SQLException {

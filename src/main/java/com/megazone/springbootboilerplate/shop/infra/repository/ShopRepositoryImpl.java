@@ -2,7 +2,7 @@ package com.megazone.springbootboilerplate.shop.infra.repository;
 
 import com.megazone.springbootboilerplate.shop.domain.Shop;
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
-import com.megazone.springbootboilerplate.shop.infra.dao.ShopMapper;
+import com.megazone.springbootboilerplate.shop.infra.mapper.ShopMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
