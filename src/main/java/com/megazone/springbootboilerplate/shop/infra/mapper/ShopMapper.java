@@ -16,14 +16,14 @@ public interface ShopMapper {
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("""
-            INSERT INTO shop (shop_name, shop_tier, shop_address, shop_detail_address)
-            VALUES (#{name}, #{tier}, #{address.address}, #{address.detailAddress})
+            INSERT INTO shop (shop_name, shop_address, shop_detail_address, shop_tier, shop_tier_code)
+            VALUES (#{name}, #{address.address}, #{address.detailAddress}, #{tier}, #{tierType})
             """)
     void save(Shop shop);
 
     @Update("""
             UPDATE shop 
-            SET shop_name = #{name}, shop_tier = #{tier}
+            SET shop_name = #{name}, shop_tier = #{tier}, shop_tier_code = #{tierType}
             WHERE shop_id = #{id}
             """)
     void update(Shop shop);

@@ -3,7 +3,7 @@ package com.megazone.springbootboilerplate.common.config.mybatis;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.type.BaseTypeHandler;
+import org.apache.ibatis.type.TypeHandler;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 @Configuration
 public class MybatisConfig {
 
-    private final List<BaseTypeHandler<?>> typeHandlers;
+    private final List<TypeHandler<?>> typeHandlers;
 
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ApplicationContext context) throws Exception {
@@ -25,7 +25,7 @@ public class MybatisConfig {
         factoryBean.setDataSource(dataSource);
         factoryBean.setTypeAliasesPackage("com.megazone.springbootboilerplate.*.domain");
         factoryBean.setMapperLocations(context.getResources("classpath:com/megazone/springbootboilerplate/*/infra/dao/*.xml"));
-        factoryBean.setTypeHandlers(typeHandlers.toArray(BaseTypeHandler[]::new));
+        factoryBean.setTypeHandlers(typeHandlers.toArray(TypeHandler[]::new));
         return factoryBean.getObject();
     }
 }

@@ -7,7 +7,8 @@
     <resultMap id="shopRowMapper" type="Shop">
         <result property="id" column="shop_id"/>
         <result property="name" column="shop_name"/>
-        <result property="tier" column="shop_tier" />
+        <result property="tier" column="shop_tier"/>
+        <result property="tierType" column="shop_tier_code"/>
         <association property="address" javaType="ShopAddress" resultMap="shopAddressRowMapper"/>
     </resultMap>
 
