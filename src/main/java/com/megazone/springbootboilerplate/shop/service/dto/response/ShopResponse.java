@@ -5,9 +5,15 @@ import com.megazone.springbootboilerplate.shop.domain.Shop;
 public record ShopResponse(
         Long id,
         String name,
+        String address,
+        String detailAddress,
         String tier
 ) {
     public static ShopResponse of(Shop shop) {
-        return new ShopResponse(shop.getId(), shop.getName(), shop.getTier().getCode());
+        return new ShopResponse(shop.getId(),
+            shop.getName(),
+            shop.getAddress().getAddress(),
+            shop.getAddress().getDetailAddress(),
+            shop.getTier().getCode());
     }
 }

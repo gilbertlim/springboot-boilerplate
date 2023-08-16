@@ -8,6 +8,12 @@
         <result property="id" column="shop_id"/>
         <result property="name" column="shop_name"/>
         <result property="tier" column="shop_tier" />
+        <association property="address" javaType="ShopAddress" resultMap="shopAddressRowMapper"/>
+    </resultMap>
+
+    <resultMap id="shopAddressRowMapper" type="ShopAddress">
+        <result property="address" column="shop_address"/>
+        <result property="detailAddress" column="shop_detail_address"/>
     </resultMap>
 
 <!--    <insert id="save" parameterType="Shop" useGeneratedKeys="true" keyProperty="id">-->

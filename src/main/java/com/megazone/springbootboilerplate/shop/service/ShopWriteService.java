@@ -24,7 +24,7 @@ public class ShopWriteService {
                 throw new DuplicateDataException(request.name() + " 중복된 이름입니다.");
             });
 
-        Shop shop = new Shop(request.name());
+        Shop shop = new Shop(request.name(), request.address(), request.detailAddress());
         shopRepository.save(shop);
         return ShopResponse.of(shop);
     }

@@ -16,8 +16,8 @@ public interface ShopMapper {
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("""
-            INSERT INTO shop (shop_name, shop_tier)
-            VALUES (#{name}, #{tier})
+            INSERT INTO shop (shop_name, shop_tier, shop_address, shop_detail_address)
+            VALUES (#{name}, #{tier}, #{address.address}, #{address.detailAddress})
             """)
     void save(Shop shop);
 

@@ -40,7 +40,10 @@ class ShopControllerTest extends Documentation {
     @DisplayName("Shop 리스트 조회")
     @Test
     void findShops() throws Exception {
-        List<ShopResponse> shopResponses = List.of(new ShopResponse(1L, "Shop A", "bronze"), new ShopResponse(2L, "Shop B", "silver"), new ShopResponse(3L, "Shop C", "gold"));
+        List<ShopResponse> shopResponses = List.of(
+            new ShopResponse(1L, "Shop A", "도로명 주소 1", "상세 주소 1", "bronze"),
+            new ShopResponse(2L, "Shop B", "도로명 주소 2", "상세 주소 2", "silver"),
+            new ShopResponse(3L, "Shop C", "도로명 주소 3", "상세 주소 3", "gold"));
         BDDMockito.given(shopReadService.findAll()).willReturn(shopResponses);
 
         mockMvc.perform(get("/shops")
@@ -52,6 +55,8 @@ class ShopControllerTest extends Documentation {
                                         fieldWithPath("message").description("API 응답 메시지"),
                                         fieldWithPath("data[].id").description("Shop ID"),
                                         fieldWithPath("data[].name").description("Shop 이름"),
+                                        fieldWithPath("data[].address").description("Shop 도로명 주소"),
+                                        fieldWithPath("data[].detailAddress").description("Shop 상세 주소"),
                                         fieldWithPath("data[].tier").description("Shop 등급")
                                 )
                         )
@@ -61,7 +66,7 @@ class ShopControllerTest extends Documentation {
     @DisplayName("Shop 조회")
     @Test
     void findShop() throws Exception {
-        ShopResponse shopResponse = new ShopResponse(1L, "Shop A", "bronze");
+        ShopResponse shopResponse = new ShopResponse(1L, "Shop A", "도로명 주소", "상세 주소", "bronze");
         BDDMockito.given(shopReadService.findById(1L)).willReturn(shopResponse);
 
         mockMvc.perform(get("/shops/{shopId}", 1L)
@@ -76,6 +81,8 @@ class ShopControllerTest extends Documentation {
                                         fieldWithPath("message").description("API 응답 메시지"),
                                         fieldWithPath("data.id").description("Shop ID"),
                                         fieldWithPath("data.name").description("Shop 이름"),
+                                        fieldWithPath("data.address").description("Shop 도로명 주소"),
+                                        fieldWithPath("data.detailAddress").description("Shop 상세 주소"),
                                         fieldWithPath("data.tier").description("Shop 등급")
                                 )
                         )
@@ -85,8 +92,8 @@ class ShopControllerTest extends Documentation {
     @DisplayName("Shop 등록")
     @Test
     void createShop() throws Exception {
-        ShopCreateRequest request = new ShopCreateRequest("Shop A");
-        ShopResponse response = new ShopResponse(1L, "Shop A", "bronze");
+        ShopCreateRequest request = new ShopCreateRequest("Shop A", "도로명 주소", "상세 주소");
+        ShopResponse response = new ShopResponse(1L, "Shop A", "도로명 주소", "상세 주소", "bronze");
         BDDMockito.given(shopWriteService.create(request)).willReturn(response);
 
         mockMvc.perform(post("/shops")
@@ -95,8 +102,10 @@ class ShopControllerTest extends Documentation {
                 .andExpect(status().isCreated())
                 .andDo(document("post-shops",
                                 requestFields(
-                                        fieldWithPath("name").description("Shop 이름")
-                                ),
+                                        fieldWithPath("name").description("Shop 이름"),
+                                        fieldWithPath("address").description("Shop 도로명 주소"),
+                                        fieldWithPath("detailAddress").description("Shop 상세 주소")
+                                    ),
                                 responseHeaders(
                                         headerWithName("Location").description("리소스 위치")
                                 ),
@@ -105,6 +114,8 @@ class ShopControllerTest extends Documentation {
                                         fieldWithPath("message").description("API 응답 메시지"),
                                         fieldWithPath("data.id").description("Shop ID"),
                                         fieldWithPath("data.name").description("Shop 이름"),
+                                        fieldWithPath("data.address").description("Shop 도로명 주소"),
+                                        fieldWithPath("data.detailAddress").description("Shop 상세 주소"),
                                         fieldWithPath("data.tier").description("Shop 등급")
                                 )
                         )
@@ -114,7 +125,7 @@ class ShopControllerTest extends Documentation {
     @DisplayName("Shop 등급 수정")
     @Test
     void updateShop() throws Exception {
-        ShopResponse response = new ShopResponse(1L, "Shop A", "silver");
+        ShopResponse response = new ShopResponse(1L, "Shop A", "도로명 주소", "상세 주소", "silver");
         BDDMockito.given(shopWriteService.update(1L, "upgrade")).willReturn(response);
 
         mockMvc.perform(put("/shops/{shopId}:{shopAction}", 1L, "upgrade")
@@ -135,6 +146,8 @@ class ShopControllerTest extends Documentation {
                                         fieldWithPath("message").description("API 응답 메시지"),
                                         fieldWithPath("data.id").description("Shop ID"),
                                         fieldWithPath("data.name").description("Shop 이름"),
+                                        fieldWithPath("data.address").description("Shop 도로명 주소"),
+                                        fieldWithPath("data.detailAddress").description("Shop 상세 주소"),
                                         fieldWithPath("data.tier").description("Shop 등급")
                                 )
                         )

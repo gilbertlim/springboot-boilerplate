@@ -17,11 +17,17 @@ public class Shop {
 
     private Long id;
     private String name;
+    private ShopAddress address;
     private ShopTier tier;
 
     public Shop(String name) {
+        this(name, "", "");
+    }
+
+    public Shop(String name, String address, String detailAddress) {
         validateName(name);
         this.name = name;
+        this.address = new ShopAddress(address, detailAddress);
         this.tier = new Bronze();
     }
 
