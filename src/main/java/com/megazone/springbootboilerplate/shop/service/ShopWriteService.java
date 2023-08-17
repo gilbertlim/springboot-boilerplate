@@ -26,7 +26,7 @@ public class ShopWriteService {
 
         Shop shop = new Shop(request.name(), request.address(), request.detailAddress());
         shopRepository.save(shop);
-        return ShopResponse.of(shop);
+        return ShopFieldMapper.INSTANCE.toShopResponse(shop);
     }
 
     public ShopResponse update(Long shopId, String shopAction) {
@@ -37,6 +37,6 @@ public class ShopWriteService {
             default -> throw new ShopTierException(shopAction + " 요청이 올바르지 않습니다.");
         }
         shopRepository.update(shop);
-        return ShopResponse.of(shop);
+        return ShopFieldMapper.INSTANCE.toShopResponse(shop);
     }
 }
