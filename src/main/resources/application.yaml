@@ -66,3 +66,11 @@ management:
 feign:
   backoffice:
     base-url: http://bo.mz.com
+
+scheduler:
+  enabled: true
+  groups:
+    a:
+      enabled: true
+    b:
+      enabled: false
