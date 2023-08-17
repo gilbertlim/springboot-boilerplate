@@ -34,6 +34,7 @@ ext {
     snippetsDir = file('build/generated-snippets')
     springCloudVersion = '2022.0.3'
     mybatisVersion = '3.0.2'
+    shedlockVersion = '5.6.0'
 }
 
 openapi3 {
@@ -53,6 +54,8 @@ dependencies {
     implementation 'io.micrometer:micrometer-tracing-bridge-brave' // tracer
     implementation 'io.micrometer:micrometer-registry-prometheus' // for prometheus metrics
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation "net.javacrumbs.shedlock:shedlock-spring:$shedlockVersion"
+    implementation "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:$shedlockVersion"
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
