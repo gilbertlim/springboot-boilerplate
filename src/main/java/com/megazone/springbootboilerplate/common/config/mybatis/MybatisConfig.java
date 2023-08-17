@@ -24,7 +24,7 @@ public class MybatisConfig {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setTypeAliasesPackage("com.megazone.springbootboilerplate.*.domain, com.megazone.springbootboilerplate.*.service.dto.response.query");
-        factoryBean.setMapperLocations(context.getResources("classpath:com/megazone/springbootboilerplate/*/infra/dao/*.xml"));
+        factoryBean.setMapperLocations(context.getResources("classpath:com/megazone/springbootboilerplate/*/infra/mapper/*.xml"));
         factoryBean.setTypeHandlers(typeHandlers.toArray(TypeHandler[]::new));
         return factoryBean.getObject();
     }
