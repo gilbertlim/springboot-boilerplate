@@ -1,6 +1,5 @@
 package com.megazone.springbootboilerplate.documentation;
 
-import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megazone.springbootboilerplate.shop.service.ShopReadService;
 import com.megazone.springbootboilerplate.shop.service.ShopWriteService;
