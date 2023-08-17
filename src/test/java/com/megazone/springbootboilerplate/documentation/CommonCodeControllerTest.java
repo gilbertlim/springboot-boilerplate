@@ -1,5 +1,6 @@
 package com.megazone.springbootboilerplate.documentation;
 
+import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.megazone.springbootboilerplate.common.dto.ResponseType;
 import java.util.ArrayList;
 import java.util.List;

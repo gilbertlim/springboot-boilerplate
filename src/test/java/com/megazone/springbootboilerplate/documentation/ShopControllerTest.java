@@ -1,5 +1,6 @@
 package com.megazone.springbootboilerplate.documentation;
 
+import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megazone.springbootboilerplate.shop.service.ShopReadService;
 import com.megazone.springbootboilerplate.shop.service.ShopWriteService;
@@ -14,9 +15,9 @@ import org.springframework.http.MediaType;
 
 import java.util.List;
 
+import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put;
@@ -49,7 +50,7 @@ class ShopControllerTest extends Documentation {
         mockMvc.perform(get("/shops")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(document("get-shops",
+                .andDo(document("get-shops", "Shop 전체 조회",
                                 responseFields(
                                         fieldWithPath("code").description("API 응답 코드"),
                                         fieldWithPath("message").description("API 응답 메시지"),
@@ -72,7 +73,7 @@ class ShopControllerTest extends Documentation {
         mockMvc.perform(get("/shops/{shopId}", 1L)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(document("get-shop",
+                .andDo(document("get-shop", "Shop 단일 조회",
                                 pathParameters(
                                         parameterWithName("shopId").description("Shop ID")
                                 ),
@@ -100,7 +101,7 @@ class ShopControllerTest extends Documentation {
                         .content(objectMapper.writeValueAsBytes(request))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andDo(document("post-shops",
+                .andDo(document("post-shops", "Shop 등록",
                                 requestFields(
                                         fieldWithPath("name").description("Shop 이름"),
                                         fieldWithPath("address").description("Shop 도로명 주소"),
@@ -131,7 +132,7 @@ class ShopControllerTest extends Documentation {
         mockMvc.perform(put("/shops/{shopId}:{shopAction}", 1L, "upgrade")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(document("put-shop",
+                .andDo(document("put-shop", "Shop 등급 변경",
                                 pathParameters(
                                         parameterWithName("shopId").description("Shop ID"),
                                         parameterWithName("shopAction").description("""
