@@ -11,13 +11,15 @@ import org.springframework.util.StringUtils;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class ShopAddress {
+
+    private static final SpecialCharacterValidator SPECIAL_CHARACTER_VALIDATOR = new SpecialCharacterValidator();
+
     private String address;
     private String detailAddress;
 
     public ShopAddress(String address, String detailAddress) {
-        SpecialCharacterValidator validator = new SpecialCharacterValidator();
-        validator.validate(address);
-        validator.validate(detailAddress);
+        SPECIAL_CHARACTER_VALIDATOR.validate(address);
+        SPECIAL_CHARACTER_VALIDATOR.validate(detailAddress);
         this.address = address;
         this.detailAddress = detailAddress;
     }

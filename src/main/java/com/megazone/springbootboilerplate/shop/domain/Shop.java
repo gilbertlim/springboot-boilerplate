@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Shop {
 
+    private static final ShopNameValidator NAME_VALIDATOR = new ShopNameValidator();
+
     private Long id;
     private String name;
     private ShopAddress address;
@@ -23,8 +25,7 @@ public class Shop {
     }
 
     public Shop(String name, String address, String detailAddress) {
-        ShopNameValidator nameValidator = new ShopNameValidator();
-        nameValidator.validate(name);
+        NAME_VALIDATOR.validate(name);
         this.name = name;
         this.address = new ShopAddress(address, detailAddress);
         this.tier = new Bronze();

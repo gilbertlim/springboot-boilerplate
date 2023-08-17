@@ -15,7 +15,7 @@ public class ShopNameValidator implements CustomValidator<ShopName, String> {
     }
 
     @Override
-    public Supplier<? extends Throwable> throwsException() {
+    public Supplier<? extends RuntimeException> throwIfInvalidValue() {
         return () -> new ShopNameException(DEFAULT_MESSAGE);
     }
 }

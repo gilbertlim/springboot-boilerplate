@@ -19,11 +19,11 @@ public interface CustomValidator<A extends Annotation, T> extends ConstraintVali
 
     default void validate(T value) {
         if (!isValid(value)) {
-            throwsException().get();
+            throw throwIfInvalidValue().get();
         }
     }
 
     boolean isValid(T t);
 
-    Supplier<? extends Throwable> throwsException();
+    Supplier<? extends RuntimeException> throwIfInvalidValue();
 }

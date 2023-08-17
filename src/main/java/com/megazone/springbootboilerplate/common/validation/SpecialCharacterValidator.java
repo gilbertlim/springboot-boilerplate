@@ -14,7 +14,7 @@ public class SpecialCharacterValidator implements CustomValidator<NonSpecialChar
     }
 
     @Override
-    public Supplier<? extends Throwable> throwsException() {
+    public Supplier<? extends RuntimeException> throwIfInvalidValue() {
         return () -> new IllegalArgumentException(DEFAULT_MESSAGE);
     }
 }
