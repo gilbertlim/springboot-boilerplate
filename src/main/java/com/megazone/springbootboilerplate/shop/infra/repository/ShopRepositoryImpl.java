@@ -3,6 +3,7 @@ package com.megazone.springbootboilerplate.shop.infra.repository;
 import com.megazone.springbootboilerplate.shop.domain.Shop;
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
 import com.megazone.springbootboilerplate.shop.infra.mapper.ShopMapper;
+import com.megazone.springbootboilerplate.shop.service.dto.response.query.ShopWithReviewsQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +29,11 @@ public class ShopRepositoryImpl implements ShopRepository {
     @Override
     public Optional<Shop> findById(Long id) {
         return Optional.ofNullable(shopMapper.findById(id));
+    }
+
+    @Override
+    public Optional<ShopWithReviewsQuery> findShopReviewsById(Long id) {
+        return Optional.ofNullable(shopMapper.findShopReviewsById(id));
     }
 
     @Override

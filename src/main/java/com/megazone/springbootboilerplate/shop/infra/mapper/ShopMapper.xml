@@ -17,6 +17,22 @@
         <result property="detailAddress" column="shop_detail_address"/>
     </resultMap>
 
+    <resultMap id="shopWithReviewsMapper" type="ShopWithReviewsQuery">
+        <id property="id" column="shop_id"/>
+        <result property="name" column="shop_name"/>
+        <collection property="reviews" ofType="ReviewQuery">
+            <id property="id" column="review_id"/>
+            <result property="contents" column="review_contents"/>
+        </collection>
+    </resultMap>
+
+    <select id="findShopReviewsById" resultMap="shopWithReviewsMapper">
+        SELECT s.shop_id, s.shop_name, r.review_id, r.review_contents
+        FROM shop s
+        LEFT JOIN review r ON s.shop_id = r.shop_id
+        WHERE s.shop_id = #{id}
+    </select>
+
 <!--    <insert id="save" parameterType="Shop" useGeneratedKeys="true" keyProperty="id">-->
 <!--        INSERT INTO shop (shop_name)-->
 <!--        VALUES (#{name})-->

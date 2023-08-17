@@ -1,6 +1,7 @@
 package com.megazone.springbootboilerplate.shop.infra.mapper;
 
 import com.megazone.springbootboilerplate.shop.domain.Shop;
+import com.megazone.springbootboilerplate.shop.service.dto.response.query.ShopWithReviewsQuery;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -50,4 +51,6 @@ public interface ShopMapper {
             WHERE shop_name = #{name}
             """)
     Shop findByName(@Param("name") String name);
+
+    ShopWithReviewsQuery findShopReviewsById(Long id);
 }
