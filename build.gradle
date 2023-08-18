@@ -95,8 +95,13 @@ tasks.register('copyResourcesMain', Copy) {
 
 tasks.compileJava.dependsOn(copyResourcesMain)
 
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 bootJar {
     archiveFileName = 'application.jar'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.named('test') {
