@@ -7,16 +7,10 @@ import java.util.Optional;
 
 @ConfigurationProperties(prefix = "spring.datasource")
 public record DataSourceProperties(
-    Map<String, DataSourcePair> datasourcePair
+    Map<String, FlexibleDataSourceInfo> datasourceType
 ) {
-    public record DataSourcePair (
-            ReaderDataSourceInfo reader,
-            WriterDataSourceInfo writer
-    ) {
-    }
-
-    public DataSourcePair getDataSourcePair(String key) {
-        return Optional.ofNullable(datasourcePair.get(key))
+    public FlexibleDataSourceInfo getDataSourceInfo(String key) {
+        return Optional.ofNullable(datasourceType.get(key))
                 .orElseThrow(() -> new IllegalArgumentException(key + " 데이터소스 정보가 존재하지 않습니다."));
     }
 }

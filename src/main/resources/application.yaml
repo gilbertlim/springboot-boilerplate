@@ -5,14 +5,27 @@ spring:
     console:
       enabled: true
   datasource:
-    datasource-pair:
+    datasource-type:
       default:
         reader:
           url: jdbc:h2:mem:testdb
           username: sa
+          hikari:
+            minimum-idle: 10
+            maximum-pool-size: 10
         writer:
           url: jdbc:h2:mem:testdb
           username: sa
+          hikari:
+            minimum-idle: 5
+            maximum-pool-size: 5
+      yamsroun:
+        writer:
+          url: jdbc:h2:mem:testdb
+          username: sa
+          hikari:
+            minimum-idle: 10
+            maximum-pool-size: 10
   task:
     scheduling:
       pool:
