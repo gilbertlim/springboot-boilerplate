@@ -14,7 +14,7 @@ plugins {
 
 group = 'com.megazone'
 version = '0.0.1-SNAPSHOT'
-apply from: 'docs.gradle'
+apply from: 'gradle-scripts/docs.gradle'
 
 java {
     sourceCompatibility = '17'
