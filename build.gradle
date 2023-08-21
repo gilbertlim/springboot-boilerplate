@@ -14,7 +14,6 @@ plugins {
 
 group = 'com.megazone'
 version = '0.0.1-SNAPSHOT'
-apply from: 'gradle-scripts/docs.gradle'
 
 java {
     sourceCompatibility = '17'
@@ -26,6 +25,8 @@ configurations {
     }
     asciidoctorExt
 }
+
+apply from: 'gradle-scripts/docs.gradle'
 
 repositories {
     mavenCentral()
@@ -67,30 +68,4 @@ dependencies {
     asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDirs = ["src/main/java", "src/main/resources"]
-            include "**/*.xml"
-        }
-    }
-}
-
-tasks.register('copyResourcesMain', Copy) {
-    from(sourceSets.main.resources.srcDirs) {
-        exclude("**/*.java")
-    }
-    into("build/classes/java/main")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-tasks.compileJava.dependsOn(copyResourcesMain)
-
-jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-bootJar {
-    archiveFileName = 'application.jar'
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
+apply from: 'gradle-scripts/etc.gradle'
