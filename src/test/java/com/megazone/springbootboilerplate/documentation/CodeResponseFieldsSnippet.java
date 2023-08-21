@@ -9,8 +9,7 @@ import org.springframework.restdocs.payload.FieldDescriptor;
 
 public class CodeResponseFieldsSnippet extends AbstractFieldsSnippet {
  
-    public CodeResponseFieldsSnippet(String type, List<FieldDescriptor> descriptors,
-        boolean ignoreUndocumentedFields) {
+    public CodeResponseFieldsSnippet(String type, List<FieldDescriptor> descriptors, boolean ignoreUndocumentedFields) {
         super(type, descriptors, null, ignoreUndocumentedFields);
     }
 

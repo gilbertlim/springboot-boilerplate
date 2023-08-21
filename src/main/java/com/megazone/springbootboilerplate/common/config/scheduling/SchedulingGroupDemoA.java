@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @ConditionalOnProperty(name = {"scheduling.enabled", "scheduling.groups.demoA.enabled"}, havingValue = "true")
-public class SchedulingJobGroupDemoA {
+public class SchedulingGroupDemoA {
 
     @Scheduled(cron = "*/5 * * * * *")
     @SchedulerLock(name = "schedulerLockA", lockAtMostFor = "5s", lockAtLeastFor = "5s")

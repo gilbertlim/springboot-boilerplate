@@ -10,14 +10,12 @@ server:
   shutdown: graceful
 
 
-
 spring:
   application:
     name: shop
+
   lifecycle.timeout-per-shutdown-phase: 1m
-  h2:
-    console:
-      enabled: true
+  h2.console.enabled: true
   datasource:
     hikari:
       minimum-idle: 10
@@ -94,7 +92,7 @@ feign:
 scheduling:
   enabled: false
   groups:
-    a:
+    demoA:
       enabled: true
-    b:
+    demoB:
       enabled: false
