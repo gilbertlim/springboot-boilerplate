@@ -1,6 +1,5 @@
 package com.megazone.springbootboilerplate.common.config.async;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -10,11 +9,16 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 public class AsyncConfig {
 
-    @Bean
-    public TaskExecutor defaultThreadPool() {
+    //@Bean
+    public TaskExecutor defaultTaskExecutor() {
         ThreadPoolTaskExecutor threadPoolExecutor = new ThreadPoolTaskExecutor();
-        threadPoolExecutor.setThreadNamePrefix("default-thread-pool");
-        threadPoolExecutor.setCorePoolSize(10);
+        threadPoolExecutor.setCorePoolSize(20);
+        threadPoolExecutor.setMaxPoolSize(50);
+        threadPoolExecutor.setQueueCapacity(100);
+        //threadPoolExecutor.setThreadNamePrefix("task-");
+        threadPoolExecutor.setWaitForTasksToCompleteOnShutdown(true);
+        threadPoolExecutor.setAwaitTerminationSeconds(30);
+        //threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         threadPoolExecutor.initialize();
         return threadPoolExecutor;
     }
