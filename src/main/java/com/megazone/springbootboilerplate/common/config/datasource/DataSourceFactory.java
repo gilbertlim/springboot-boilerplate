@@ -6,7 +6,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 
 public class DataSourceFactory {
     public static DataSource generateDataSource(String key, DataSourceProperties dataSourceProperties) {
-        FlexibleDataSourceInfo flexibleDataSourceInfo = dataSourceProperties.getDataSourceInfo(key);
+        DataSourceProperties.FlexibleDataSourceInfo flexibleDataSourceInfo = dataSourceProperties.getDataSourceInfo(key);
         if (flexibleDataSourceInfo.isMultiple()) {
             HikariDataSource reader = hikariDataSource(key, flexibleDataSourceInfo.reader());
             HikariDataSource writer = hikariDataSource(key, flexibleDataSourceInfo.writer());

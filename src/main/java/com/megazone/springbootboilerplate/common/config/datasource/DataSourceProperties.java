@@ -9,6 +9,23 @@ import java.util.Optional;
 public record DataSourceProperties(
     Map<String, FlexibleDataSourceInfo> datasourceType
 ) {
+    public record FlexibleDataSourceInfo(
+        ReaderDataSourceInfo reader,
+        WriterDataSourceInfo writer
+    ) {
+        public boolean isMultiple() {
+            return reader != null && writer != null;
+        }
+
+        public AbstractDataSourceInfo getOne() {
+            if (Optional.ofNullable(writer).isPresent()) {
+                return writer;
+            }
+
+            return reader;
+        }
+    }
+
     public FlexibleDataSourceInfo getDataSourceInfo(String key) {
         return Optional.ofNullable(datasourceType.get(key))
                 .orElseThrow(() -> new IllegalArgumentException(key + " 데이터소스 정보가 존재하지 않습니다."));

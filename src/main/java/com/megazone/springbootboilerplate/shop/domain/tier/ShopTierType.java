@@ -17,7 +17,8 @@ public enum ShopTierType implements ShopTierSpec {
                 throw new ShopTierException("등급을 더 이상 내릴 수 없습니다.");
             }
         }
-    ), SILVER(
+    ),
+    SILVER(
         "S",
         new ShopTierSpec() {
             @Override
@@ -30,7 +31,8 @@ public enum ShopTierType implements ShopTierSpec {
                 return BRONZE;
             }
         }
-    ), GOLD(
+    ),
+    GOLD(
         "G",
         new ShopTierSpec() {
             @Override
