@@ -1,6 +1,20 @@
+server:
+  tomcat:
+    connection-timeout: 2800
+    keep-alive-timeout: -1
+    max-keep-alive-requests: -1
+    threads:
+      max: 200
+      min-spare: 200
+  accept-count: 100
+  shutdown: graceful
+
+
+
 spring:
   application:
     name: shop
+  lifecycle.timeout-per-shutdown-phase: 1m
   h2:
     console:
       enabled: true
