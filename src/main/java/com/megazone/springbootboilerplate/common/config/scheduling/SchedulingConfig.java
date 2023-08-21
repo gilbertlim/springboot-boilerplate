@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.config.schedule;
+package com.megazone.springbootboilerplate.common.config.scheduling;
 
 import javax.sql.DataSource;
 import net.javacrumbs.shedlock.core.LockProvider;
@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableSchedulerLock(defaultLockAtMostFor = "10s")
 @EnableScheduling
 @Configuration
-public class ScheduleConfig {
+public class SchedulingConfig {
 
     @Bean
     public LockProvider lockProvider(DataSource dataSource) {

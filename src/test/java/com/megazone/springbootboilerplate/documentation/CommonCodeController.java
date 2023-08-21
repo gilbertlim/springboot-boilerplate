@@ -4,6 +4,7 @@ import com.megazone.springbootboilerplate.common.dto.ResponseType;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.Getter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class CommonCodeController {
             .collect(Collectors.toMap(Enum::name, CodeResponse::new));
     }
 
+    @Getter
     protected static class CodeResponse {
         private String code;
         private String message;
@@ -28,18 +30,6 @@ public class CommonCodeController {
             this.code = responseType.getCode();
             this.message = responseType.getMessage();
             this.status = responseType.getStatus().value();
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public int getStatus() {
-            return status;
         }
     }
 }

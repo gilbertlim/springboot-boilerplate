@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.config.schedule;
+package com.megazone.springbootboilerplate.common.config.scheduling;
 
 import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@ConditionalOnProperty(name = {"scheduler.enabled", "scheduler.groups.a.enabled"}, havingValue = "true")
-public class SchedulerJobGroupA {
+@ConditionalOnProperty(name = {"scheduling.enabled", "scheduling.groups.demoB.enabled"}, havingValue = "true")
+public class SchedulingJobGroupDemoB {
 
-    @Scheduled(cron = "*/5 * * * * *")
-    @SchedulerLock(name = "schedulerLock", lockAtMostFor = "5s", lockAtLeastFor = "5s")
-    public void aSchedule1() {
+    @Scheduled(cron = "*/1 * * * * *")
+    @SchedulerLock(name = "schedulerLockB", lockAtMostFor = "1s", lockAtLeastFor = "1s")
+    public void scheduleB() {
         log.info("[{}] 스케줄러 작동: {}", Thread.currentThread().getName(), new Date());
     }
 

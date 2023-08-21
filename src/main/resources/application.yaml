@@ -19,14 +19,14 @@ spring:
     console:
       enabled: true
   datasource:
-    datasource-type:
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 10
+    groups:
       default:
         reader:
           url: jdbc:h2:mem:testdb
           username: sa
-          hikari:
-            minimum-idle: 10
-            maximum-pool-size: 10
         writer:
           url: jdbc:h2:mem:testdb
           username: sa
@@ -37,9 +37,6 @@ spring:
         writer:
           url: jdbc:h2:mem:testdb
           username: sa
-          hikari:
-            minimum-idle: 10
-            maximum-pool-size: 10
   task:
     scheduling:
       pool:
@@ -94,8 +91,8 @@ feign:
   backoffice:
     base-url: http://bo.mz.com
 
-scheduler:
-  enabled: true
+scheduling:
+  enabled: false
   groups:
     a:
       enabled: true
