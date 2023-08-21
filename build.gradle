@@ -14,6 +14,7 @@ plugins {
 
 group = 'com.megazone'
 version = '0.0.1-SNAPSHOT'
+apply from: 'docs.gradle'
 
 java {
     sourceCompatibility = '17'
@@ -31,19 +32,10 @@ repositories {
 }
 
 ext {
-    snippetsDir = file('build/generated-snippets')
     springCloudVersion = '2022.0.4'
     mybatisVersion = '3.0.2'
     shedlockVersion = '5.6.0'
     mapStructVersion = '1.5.5.Final'
-}
-
-openapi3 {
-    server = 'http://localhost:8080'
-    title = 'REST API 문서'
-    description = 'REST API 문서'
-    version = '0.0.1'
-    format = 'yaml'
 }
 
 dependencies {
@@ -101,33 +93,4 @@ jar {
 bootJar {
     archiveFileName = 'application.jar'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-test {
-    outputs.dir snippetsDir
-    useJUnitPlatform()
-}
-
-asciidoctor {
-    inputs.dir snippetsDir
-    configurations 'asciidoctorExt'
-    dependsOn test
-}
-
-tasks.register('copyOasToSwagger', Copy) {
-    dependsOn("openapi3")
-
-    from("$buildDir/api-spec/openapi3.yaml")
-    into("src/main/resources/static/docs/swagger")
-}
-
-tasks.register('copyDocument', Copy) {
-    dependsOn asciidoctor
-
-    from("$buildDir/docs/asciidoc")
-    into("src/main/resources/static/docs/restdocs")
 }
