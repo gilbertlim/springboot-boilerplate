@@ -3,14 +3,14 @@ package com.megazone.springbootboilerplate.common.config.web;
 import com.megazone.springbootboilerplate.common.config.web.interceptor.LogInterceptor;
 import com.megazone.springbootboilerplate.common.config.web.interceptor.MetricInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    public static final String[] ALLOWED_ORIGINS = {"http://front-end.com"};
+    public static final String[] ALLOWED_ORIGINS = {
+        "http://front-end.com"
+    };
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

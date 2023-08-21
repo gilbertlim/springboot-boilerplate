@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.config.async;
+package com.megazone.springbootboilerplate.common.config.task;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
@@ -7,7 +7,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @EnableAsync
 @Configuration
-public class AsyncConfig {
+public class TaskExecutorConfig {
 
     //@Bean
     public TaskExecutor defaultTaskExecutor() {

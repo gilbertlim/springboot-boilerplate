@@ -1,12 +1,13 @@
 package com.megazone.springbootboilerplate.documentation;
 
-import com.megazone.springbootboilerplate.common.dto.ResponseType;
-import java.util.Arrays;
-import java.util.List;
+import com.megazone.springbootboilerplate.common.dto.CommonResponseType;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.FieldDescriptor;
 import org.springframework.restdocs.payload.JsonFieldType;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -24,7 +25,7 @@ public class CommonCodeControllerTest extends Documentation {
     }
 
     private List<FieldDescriptor> fieldDescriptors() {
-        return Arrays.stream(ResponseType.values())
+        return Arrays.stream(CommonResponseType.values())
             .map(code -> fieldWithPath(code.name())
                 .type(JsonFieldType.OBJECT)
                 .attributes(

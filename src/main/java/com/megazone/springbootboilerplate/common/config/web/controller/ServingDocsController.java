@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.config.web;
+package com.megazone.springbootboilerplate.common.config.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
