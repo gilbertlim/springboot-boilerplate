@@ -57,6 +57,19 @@ spring:
         await-termination-period: 30
 
 
+scheduling:
+  enabled: false
+  groups:
+    demoA:
+      enabled: true
+    demoB:
+      enabled: false
+
+
+feign:
+  backoffice:
+    base-url: http://bo.mz.com
+
 
 logging:
   pattern:
@@ -103,15 +116,3 @@ management:
 #    rollingpolicy:
 #      file-name-pattern: logs/application-%d{yyyyMMdd}.%i.log
 #      max-history: 5
-
-feign:
-  backoffice:
-    base-url: http://bo.mz.com
-
-scheduling:
-  enabled: false
-  groups:
-    demoA:
-      enabled: true
-    demoB:
-      enabled: false
