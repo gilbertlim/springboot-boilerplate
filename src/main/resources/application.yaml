@@ -17,9 +17,6 @@ spring:
   lifecycle.timeout-per-shutdown-phase: 1m
   h2.console.enabled: true
   datasource:
-    hikari:
-      minimum-idle: 10
-      maximum-pool-size: 10
     groups:
       default:
         reader:

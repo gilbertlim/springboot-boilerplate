@@ -1,32 +1,38 @@
 package com.megazone.springbootboilerplate.common.config.datasource;
 
+import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
-import org.springframework.boot.jdbc.DataSourceBuilder;
+import java.util.Objects;
 
 public class DataSourceFactory {
     public static DataSource generateDataSource(String key, DataSourceProperties dataSourceProperties) {
         DataSourceProperties.FlexibleDataSourceInfo flexibleDataSourceInfo = dataSourceProperties.getDataSourceInfo(key);
+        HikariConfig defaultHikariConfig = dataSourceProperties.hikari();
+
         if (flexibleDataSourceInfo.isMultiple()) {
-            HikariDataSource reader = hikariDataSource(key, flexibleDataSourceInfo.reader());
-            HikariDataSource writer = hikariDataSource(key, flexibleDataSourceInfo.writer());
+            HikariConfig readerConfig = setHikariConfig(flexibleDataSourceInfo.reader(), defaultHikariConfig);
+            HikariDataSource reader = hikariDataSource(key, readerConfig);
+            HikariConfig writerConfig = setHikariConfig(flexibleDataSourceInfo.writer(), defaultHikariConfig);
+            HikariDataSource writer = hikariDataSource(key, writerConfig);
             return new RoutingDataSource(reader, writer);
         }
 
-        return hikariDataSource(key, flexibleDataSourceInfo.getOne());
+        HikariConfig config = setHikariConfig(flexibleDataSourceInfo.getOne(), defaultHikariConfig);
+        return hikariDataSource(key, config);
     }
 
-    private static HikariDataSource hikariDataSource(String name, AbstractDataSourceInfo info) {
-        HikariDataSource dataSource = DataSourceBuilder.create()
-            .type(HikariDataSource.class)
-            .url(info.getUrl())
-            .username(info.getUsername())
-            .password(info.getPassword())
-            .build();
-        dataSource.setReadOnly(info.isReadOnly());
-        dataSource.setPoolName(name + (info.isReadOnly() ? "Reader" : "Writer"));
-        // TODO: Hikari 옵션 적용
-        return dataSource;
+    private static HikariConfig setHikariConfig(AbstractDataSourceInfo info, HikariConfig defaultHikariConfig) {
+        HikariConfig config = Objects.requireNonNullElse(info.getHikari(), defaultHikariConfig);
+        config.setJdbcUrl(info.getUrl());
+        config.setUsername(info.getUsername());
+        config.setPassword(info.getPassword());
+        config.setReadOnly(info.isReadOnly());
+        return config;
     }
 
+    private static HikariDataSource hikariDataSource(String name, HikariConfig config) {
+        config.setPoolName(name + (config.isReadOnly() ? "Reader" : "Writer"));
+        return new HikariDataSource(config);
+    }
 }
