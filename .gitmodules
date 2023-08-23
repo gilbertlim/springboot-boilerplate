@@ -1,4 +1,4 @@
 [submodule "src/main/java/com/megazone/springbootboilerplate/common_module"]
 	path = src/main/java/com/megazone/springbootboilerplate/common_module
 	url = git@github.com:gilbertlim/springboot-boilerplate-common.git
-    ignore = dirty
+	ignore = dirty
