@@ -5,13 +5,11 @@ import jakarta.annotation.PostConstruct;
 import java.util.Map;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
-@Slf4j
 @RequiredArgsConstructor
 @Configuration
 public class DataSourceConfig {
