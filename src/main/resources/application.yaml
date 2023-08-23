@@ -55,7 +55,7 @@ spring:
 
 
 scheduling:
-  enabled: false
+  enabled: true
   groups:
     demoA:
       enabled: true
