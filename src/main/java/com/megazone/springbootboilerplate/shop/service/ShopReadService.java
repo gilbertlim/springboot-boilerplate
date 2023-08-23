@@ -1,6 +1,6 @@
 package com.megazone.springbootboilerplate.shop.service;
 
-import com.megazone.springbootboilerplate.common.exception.NotFoundException;
+import com.megazone.springbootboilerplate.common_module.exception.NotFoundException;
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
 import com.megazone.springbootboilerplate.common.infra.client.BackOfficeFeignClient;
 import com.megazone.springbootboilerplate.shop.service.dto.response.ShopResponse;

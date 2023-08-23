@@ -1,7 +1,7 @@
 package com.megazone.springbootboilerplate.shop.service;
 
-import com.megazone.springbootboilerplate.common.exception.DuplicateDataException;
-import com.megazone.springbootboilerplate.common.exception.NotFoundException;
+import com.megazone.springbootboilerplate.common_module.exception.DuplicateDataException;
+import com.megazone.springbootboilerplate.common_module.exception.NotFoundException;
 import com.megazone.springbootboilerplate.shop.domain.Shop;
 import com.megazone.springbootboilerplate.shop.domain.ShopRepository;
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopTierException;

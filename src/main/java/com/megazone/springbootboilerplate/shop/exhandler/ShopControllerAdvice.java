@@ -1,6 +1,6 @@
 package com.megazone.springbootboilerplate.shop.exhandler;
 
-import com.megazone.springbootboilerplate.common.dto.CommonResponse;
+import com.megazone.springbootboilerplate.common_module.dto.CommonResponse;
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopTierException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

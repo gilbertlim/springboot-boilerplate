@@ -1,6 +1,6 @@
 package com.megazone.springbootboilerplate.common.config.web.controller;
 
-import com.megazone.springbootboilerplate.common.dto.CommonResponse;
+import com.megazone.springbootboilerplate.common_module.dto.CommonResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;

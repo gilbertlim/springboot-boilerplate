@@ -1,8 +1,8 @@
 package com.megazone.springbootboilerplate.common.config.web.exhandler;
 
-import com.megazone.springbootboilerplate.common.dto.*;
-import com.megazone.springbootboilerplate.common.exception.DuplicateDataException;
-import com.megazone.springbootboilerplate.common.exception.NotFoundException;
+import com.megazone.springbootboilerplate.common_module.dto.*;
+import com.megazone.springbootboilerplate.common_module.exception.DuplicateDataException;
+import com.megazone.springbootboilerplate.common_module.exception.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,6 +1,6 @@
 package com.megazone.springbootboilerplate.shop.domain;
 
-import com.megazone.springbootboilerplate.common.validation.SpecialCharacterValidator;
+import com.megazone.springbootboilerplate.common_module.validation.SpecialCharacterValidator;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.megazone.springbootboilerplate.shop.domain;
 
-import com.megazone.springbootboilerplate.common.validation.CustomValidator;
+import com.megazone.springbootboilerplate.common_module.validation.CustomValidator;
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopNameException;
 import java.util.function.Supplier;
 

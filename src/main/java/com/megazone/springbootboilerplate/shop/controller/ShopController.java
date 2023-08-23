@@ -1,7 +1,7 @@
 package com.megazone.springbootboilerplate.shop.controller;
 
-import com.megazone.springbootboilerplate.common.dto.CommonResponse;
-import com.megazone.springbootboilerplate.common.dto.CommonResponseType;
+import com.megazone.springbootboilerplate.common_module.dto.CommonResponse;
+import com.megazone.springbootboilerplate.common_module.dto.CommonResponseType;
 import com.megazone.springbootboilerplate.shop.service.ShopReadService;
 import com.megazone.springbootboilerplate.shop.service.ShopWriteService;
 import com.megazone.springbootboilerplate.shop.service.dto.request.ShopCreateRequest;
