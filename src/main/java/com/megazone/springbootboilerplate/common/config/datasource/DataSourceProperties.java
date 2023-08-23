@@ -18,9 +18,17 @@ public record DataSourceProperties(
     }
 
     public record FlexibleDataSourceInfo(
+        Boolean primary,
         ReaderDataSourceInfo reader,
         WriterDataSourceInfo writer
     ) {
+
+        public FlexibleDataSourceInfo(Boolean primary, ReaderDataSourceInfo reader, WriterDataSourceInfo writer) {
+            this.primary = Objects.requireNonNullElse(primary, false);
+            this.reader = reader;
+            this.writer = writer;
+        }
+
         public boolean isMultiple() {
             return reader != null && writer != null;
         }
@@ -31,10 +39,5 @@ public record DataSourceProperties(
             }
             return reader;
         }
-    }
-
-    public FlexibleDataSourceInfo getDataSourceInfo(String key) {
-        return Optional.ofNullable(groups.get(key))
-                .orElseThrow(() -> new IllegalArgumentException(key + " 데이터소스 정보가 존재하지 않습니다."));
     }
 }

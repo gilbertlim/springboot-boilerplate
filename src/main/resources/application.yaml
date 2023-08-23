@@ -18,7 +18,8 @@ spring:
   h2.console.enabled: true
   datasource:
     groups:
-      default:
+      basic:
+        primary: true
         reader:
           url: jdbc:log4jdbc:h2:mem:testdb
           username: sa
@@ -28,7 +29,7 @@ spring:
           hikari:
             minimum-idle: 5
             maximum-pool-size: 5
-      yamsroun:
+      demo:
         writer:
           url: jdbc:log4jdbc:h2:mem:testdb
           username: sa

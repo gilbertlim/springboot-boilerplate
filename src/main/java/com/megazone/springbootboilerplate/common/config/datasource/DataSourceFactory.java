@@ -6,10 +6,7 @@ import javax.sql.DataSource;
 import java.util.Objects;
 
 public class DataSourceFactory {
-    public static DataSource generateDataSource(String key, DataSourceProperties dataSourceProperties) {
-        DataSourceProperties.FlexibleDataSourceInfo flexibleDataSourceInfo = dataSourceProperties.getDataSourceInfo(key);
-        HikariConfig defaultHikariConfig = dataSourceProperties.hikari();
-
+    public static DataSource generateDataSource(String key, DataSourceProperties.FlexibleDataSourceInfo flexibleDataSourceInfo, HikariConfig defaultHikariConfig) {
         if (flexibleDataSourceInfo.isMultiple()) {
             HikariConfig readerConfig = setHikariConfig(flexibleDataSourceInfo.reader(), defaultHikariConfig);
             HikariDataSource reader = hikariDataSource(key, readerConfig);
