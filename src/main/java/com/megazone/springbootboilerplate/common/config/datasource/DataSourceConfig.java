@@ -8,7 +8,6 @@ import org.springframework.beans.factory.config.BeanDefinitionCustomizer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
-import org.springframework.util.StringUtils;
 
 @RequiredArgsConstructor
 @Configuration
@@ -29,9 +28,8 @@ public class DataSourceConfig {
         String beanName = dataSourceInfoEntry.getKey() + "DataSource";
         var dataSourceInfo = dataSourceInfoEntry.getValue();
         if (dataSourceInfo.isMultiple()) {
-            String lazyBeanName = "lazy" + StringUtils.capitalize(beanName);
-            applicationContext.registerBean(lazyBeanName, LazyConnectionDataSourceProxy.class, primaryBeanCustomizer(dataSourceInfo, dataSource));
-            initializeBean(lazyBeanName, dataSource);
+            applicationContext.registerBean(beanName, LazyConnectionDataSourceProxy.class, primaryBeanCustomizer(dataSourceInfo, dataSource));
+            initializeBean(beanName, dataSource);
             return;
         }
 
