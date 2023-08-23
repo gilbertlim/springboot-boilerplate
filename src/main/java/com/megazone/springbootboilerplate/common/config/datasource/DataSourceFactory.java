@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class DataSourceFactory {
     public static DataSource generateDataSource(String key, DataSourceProperties.FlexibleDataSourceInfo flexibleDataSourceInfo, HikariConfig defaultHikariConfig) {
-        if (flexibleDataSourceInfo.isMultiple()) {
+        if (flexibleDataSourceInfo.isCluster()) {
             HikariConfig readerConfig = setHikariConfig(flexibleDataSourceInfo.reader(), defaultHikariConfig);
             HikariDataSource reader = hikariDataSource(key, readerConfig);
             HikariConfig writerConfig = setHikariConfig(flexibleDataSourceInfo.writer(), defaultHikariConfig);

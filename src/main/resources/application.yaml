@@ -22,17 +22,17 @@ spring:
         primary: true
         reader:
           url: jdbc:log4jdbc:h2:mem:testdb
-          username: sa
+          username: ENC(g1Tdt3j8hxw1qkwl/o5VbaITq9+dM8wzVYVSEUlQTK8S0PNkLzv4I8uGvcDke7xT)
         writer:
           url: jdbc:log4jdbc:h2:mem:testdb
-          username: sa
+          username: ENC(g1Tdt3j8hxw1qkwl/o5VbaITq9+dM8wzVYVSEUlQTK8S0PNkLzv4I8uGvcDke7xT)
           hikari:
             minimum-idle: 5
             maximum-pool-size: 5
       demo:
         writer:
           url: jdbc:log4jdbc:h2:mem:testdb
-          username: sa
+          username: ENC(g1Tdt3j8hxw1qkwl/o5VbaITq9+dM8wzVYVSEUlQTK8S0PNkLzv4I8uGvcDke7xT)
 
   task:
     ## @Scheduled
@@ -67,7 +67,6 @@ scheduling:
 feign:
   backoffice:
     base-url: http://bo.mz.com
-
 
 logging:
   pattern:

@@ -27,7 +27,7 @@ public class DataSourceConfig {
     private void initializeDataSource(Map.Entry<String, DataSourceProperties.FlexibleDataSourceInfo> dataSourceInfoEntry, DataSource dataSource) {
         String beanName = dataSourceInfoEntry.getKey() + "DataSource";
         var dataSourceInfo = dataSourceInfoEntry.getValue();
-        if (dataSourceInfo.isMultiple()) {
+        if (dataSourceInfo.isCluster()) {
             applicationContext.registerBean(beanName, LazyConnectionDataSourceProxy.class, primaryBeanCustomizer(dataSourceInfo, dataSource));
             initializeBean(beanName, dataSource);
             return;

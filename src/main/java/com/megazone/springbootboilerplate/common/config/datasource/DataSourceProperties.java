@@ -29,7 +29,7 @@ public record DataSourceProperties(
             this.writer = writer;
         }
 
-        public boolean isMultiple() {
+        public boolean isCluster() {
             return reader != null && writer != null;
         }
 
