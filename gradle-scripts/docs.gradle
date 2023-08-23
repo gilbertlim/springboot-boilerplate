@@ -29,3 +29,7 @@ tasks.register('copyDocument', Copy) {
     from("$buildDir/docs/asciidoc")
     into("src/main/resources/static/docs/restdocs")
 }
+
+test {
+    outputs.dir snippetsDir
+}

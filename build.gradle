@@ -70,3 +70,7 @@ dependencies {
 }
 
 apply from: 'gradle-scripts/etc.gradle'
+
+test {
+    useJUnitPlatform()
+}
