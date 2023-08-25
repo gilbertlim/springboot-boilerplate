@@ -84,7 +84,10 @@ logging:
   pattern:
     level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}][%X{userId:-}][%X{userIp:-}]"
   level:
+    #root: info
     com.megazone.springbootboilerplate: debug
+    com.megazone.springbootboilerplate.feign: debug
+    org.springframework.web: info
     jdbc:
       sqlonly: debug
       sqltiming: debug
@@ -92,11 +95,6 @@ logging:
       audit: off
       resultset: off
       connection: off
-  #    root: info
-  #    com.megazone.com.megazone.springbootboilerplate.feign: debug
-  #    org:
-  #      springframework:
-  #        web: info
 
 # 사용할 actuator endpoint 설정
 management:

@@ -48,12 +48,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator' // tracer dependency
     implementation 'io.micrometer:micrometer-tracing-bridge-brave' // tracer
     implementation 'io.micrometer:micrometer-registry-prometheus' // for prometheus metrics
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     implementation platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     implementation "net.javacrumbs.shedlock:shedlock-spring:$shedlockVersion"
     implementation "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:$shedlockVersion"
+
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
 
     compileOnly 'org.projectlombok:lombok'
     testCompileOnly 'org.projectlombok:lombok'
@@ -62,8 +66,6 @@ dependencies {
     implementation "org.mapstruct:mapstruct:$mapStructVersion"
     annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
-    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.mybatis.spring.boot:mybatis-spring-boot-starter-test:$mybatisVersion"
