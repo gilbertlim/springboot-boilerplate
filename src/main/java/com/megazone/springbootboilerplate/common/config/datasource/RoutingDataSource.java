@@ -1,5 +1,6 @@
 package com.megazone.springbootboilerplate.common.config.datasource;
 
+import com.zaxxer.hikari.HikariDataSource;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
@@ -26,7 +27,8 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
         boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
         Target target = readOnly ? Target.READER : Target.WRITER;
         if (TransactionSynchronizationManager.isActualTransactionActive()) {
-            log.debug("routing: {}", target);
+            HikariDataSource dataSource = (HikariDataSource) getResolvedDataSources().get(target);
+            log.debug("routing: {}", dataSource.getPoolName());
         }
         return target;
     }
