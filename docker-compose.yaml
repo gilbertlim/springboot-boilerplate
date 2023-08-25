@@ -3,22 +3,21 @@ version: "3.7"
 services:
   redis:
     container_name: redis
-    image: redis:7.2.0
+    image: redis:7.2
     ports:
       - "6379:6379"
 
   zookeeper:
     container_name: zookeeper
-    image: confluentinc/cp-zookeeper:5.5.1
+    image: zookeeper:3.9
     ports:
       - '2181:2181'
     environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
+      ZOO_TICK_TIME: 2000
 
   kafka-1:
     container_name: kafka-1
-    image: confluentinc/cp-kafka:5.5.1
+    image: confluentinc/cp-kafka:6.0.14
     ports:
       - '9092:9092'
     depends_on:
