@@ -34,6 +34,18 @@ spring:
           url: jdbc:log4jdbc:h2:mem:testdb
           username: ENC(g1Tdt3j8hxw1qkwl/o5VbaITq9+dM8wzVYVSEUlQTK8S0PNkLzv4I8uGvcDke7xT)
 
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: shop
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
   task:
     ## @Scheduled
     scheduling:
@@ -56,7 +68,7 @@ spring:
 
 
 scheduling:
-  enabled: true
+  enabled: false
   groups:
     demoA:
       enabled: true

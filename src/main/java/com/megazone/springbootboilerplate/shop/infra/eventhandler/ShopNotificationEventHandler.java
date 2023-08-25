@@ -11,9 +11,11 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @Slf4j
 @Component
 public class ShopNotificationEventHandler implements EventHandler<ShopTierEvent> {
+
     @Async
     @Transactional
     @TransactionalEventListener(ShopTierEvent.class)
+    @Override
     public void handle(ShopTierEvent event) {
         log.info("ShopId: {} {} 알림 전송", event.id(), event.type());
     }
