@@ -1,3 +1,6 @@
+##----------------------------------
+## Server - Servlet Container
+##----------------------------------
 server:
   tomcat:
     connection-timeout: 2800
@@ -10,12 +13,20 @@ server:
   shutdown: graceful
 
 
+
+##----------------------------------
+## Spring
+##----------------------------------
 spring:
+  ## Basic
+  profiles.active: local
   application:
     name: shop
 
   lifecycle.timeout-per-shutdown-phase: 1m
   h2.console.enabled: true
+
+  ## DataSource
   datasource:
     groups:
       basic:
@@ -34,6 +45,23 @@ spring:
           url: jdbc:log4jdbc:h2:mem:testdb
           username: ENC(g1Tdt3j8hxw1qkwl/o5VbaITq9+dM8wzVYVSEUlQTK8S0PNkLzv4I8uGvcDke7xT)
 
+  ## Spring Data
+  data:
+    ## JPA
+    #nothing
+
+    ## Redis
+    redis:
+      host: localhost
+      #cluster:
+      #  nodes: localhost
+      timeout: 500ms
+      connect-timeout: 200ms
+      lettuce:
+        pool:
+          min-idle: 8
+
+  ## Kafka
   kafka:
     producer:
       bootstrap-servers: localhost:9092
@@ -41,11 +69,12 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: shop
+      group-id: ${spring.application.name}
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
+  ## TaskExecutor
   task:
     ## @Scheduled
     scheduling:
@@ -67,6 +96,10 @@ spring:
         await-termination-period: 30
 
 
+
+##----------------------------------
+## Scheduling Management
+##----------------------------------
 scheduling:
   enabled: false
   groups:
@@ -76,10 +109,19 @@ scheduling:
       enabled: false
 
 
+
+##----------------------------------
+## FeignClient
+##----------------------------------
 feign:
   backoffice:
     base-url: http://bo.mz.com
 
+
+
+##----------------------------------
+## Logging
+##----------------------------------
 logging:
   pattern:
     level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}][%X{userId:-}][%X{userIp:-}]"
@@ -96,7 +138,11 @@ logging:
       resultset: off
       connection: off
 
-# 사용할 actuator endpoint 설정
+
+
+##----------------------------------
+## Actuator
+##----------------------------------
 management:
   endpoints:
     web:
