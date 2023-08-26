@@ -4,10 +4,12 @@ import io.lettuce.core.ReadFrom;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
@@ -25,27 +27,17 @@ public class RedisConfig {
 
     private final RedisProperties redisProperties;
 
-    @Value("${spring.redis.timeout:500ms}")
+    @Value("${spring.data.redis.timeout:500ms}")
     private Duration timeout;
 
-    @Profile("!local")
     @Bean
-    public LettuceClientConfigurationBuilderCustomizer lettuceClientConfigurationBuilderCustomizer() {
-        log.debug(">>> this is not local env. it connected at redis cluster.");
-        return clientConfigurationBuilder -> clientConfigurationBuilder.readFrom(ReadFrom.REPLICA_PREFERRED)
-            .commandTimeout(this.timeout)
-            .build();
-    }
-
-    @Profile("local")
-    @Bean
-    @ConditionalOnProperty(value = "spring.redis.host", havingValue = "localhost")
+    @ConditionalOnProperty(value = "spring.data.redis.host", havingValue = "localhost")
     public RedisConnectionFactory redisConnectionFactory() {
-        log.debug(">>> this is local env. it connected at redis standalone.");
+        log.info(">>> Redis is configured in standalone mode for local environment");
 
         RedisStandaloneConfiguration serverConfig = new RedisStandaloneConfiguration();
-        serverConfig.setHostName(this.redisProperties.getHost());  //localhost
-        serverConfig.setPort(this.redisProperties.getPort());  //6379
+        serverConfig.setHostName(redisProperties.getHost());  //localhost
+        serverConfig.setPort(redisProperties.getPort());  //6379
 
         LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
             .commandTimeout(this.timeout)
@@ -54,7 +46,18 @@ public class RedisConfig {
         return new LettuceConnectionFactory(serverConfig, clientConfig);
     }
 
-    /** 레디스 RedisTemplate */
+    @Bean
+    @ConditionalOnMissingBean(RedisConnectionFactory.class)
+    public LettuceClientConfigurationBuilderCustomizer lettuceClientConfigurationBuilderCustomizer() {
+        log.info(">>> Redis is configured in cluster mode");
+        return clientConfigurationBuilder -> clientConfigurationBuilder.readFrom(ReadFrom.REPLICA_PREFERRED)
+            .commandTimeout(this.timeout)
+            .build();
+    }
+
+    /**
+     * 레디스 RedisTemplate
+     */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();

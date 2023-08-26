@@ -12,7 +12,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.support.NoOpCacheManager;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -28,16 +29,17 @@ public class CacheConfig implements CachingConfigurer {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    @Profile("local")
+    //@Profile("local")
     //@Bean
     public CacheManager noRedisCacheManager() {
-        log.info(">>> CacheManager is NoOpCacheManager!");
+        log.info(">>> CacheManager is not configured");
         return new NoOpCacheManager();
     }
 
+    //@Profile("!local")
     @Bean
     public CacheManager redisCacheManager(RedisConnectionFactory redisConnectionFactory) {
-        log.info(">>> CacheManager is RedisCacheManager!");
+        log.info(">>> CacheManager is configured with redis");
 
         ObjectMapper mapper = createObjectMapperForSerializer();
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration
