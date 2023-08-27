@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import com.megazone.springbootboilerplate.common.utils.EnvironmentUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurer;
@@ -30,9 +29,6 @@ import java.util.Map;
 public class CacheConfig implements CachingConfigurer {
 
     private final EnvironmentUtils environmentUtils;
-
-    @Value("${spring.application.name:NoName}")
-    private String applicationName;
 
     //@Profile("local")
     //@Bean
@@ -64,7 +60,7 @@ public class CacheConfig implements CachingConfigurer {
     }
 
     private String getPrefixCacheName() {
-        String prefixCacheName = applicationName + "::";
+        String prefixCacheName = environmentUtils.getApplicationName() + "::";
         if (environmentUtils.isLocalProfile()) {
             return environmentUtils.getLocalProfile() + ":" + prefixCacheName;
         }
