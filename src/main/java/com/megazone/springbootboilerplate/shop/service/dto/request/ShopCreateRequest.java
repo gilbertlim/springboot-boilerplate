@@ -7,9 +7,11 @@ import jakarta.validation.constraints.NotEmpty;
 public record ShopCreateRequest(
     @ShopName
     String name,
+
     @NotEmpty
     @NonSpecialCharacters
     String address,
+
     @NotEmpty
     @NonSpecialCharacters
     String detailAddress
