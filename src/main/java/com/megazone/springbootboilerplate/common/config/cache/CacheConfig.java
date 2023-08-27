@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
+import com.megazone.springbootboilerplate.common.utils.EnvironmentUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.Cache;
@@ -23,10 +25,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+@RequiredArgsConstructor
 @Configuration
 public class CacheConfig implements CachingConfigurer {
 
-    @Value("${spring.application.name}")
+    private final EnvironmentUtils environmentUtils;
+
+    @Value("${spring.application.name:NoName}")
     private String applicationName;
 
     //@Profile("local")
@@ -39,12 +44,13 @@ public class CacheConfig implements CachingConfigurer {
     //@Profile("!local")
     @Bean
     public CacheManager redisCacheManager(RedisConnectionFactory redisConnectionFactory) {
-        log.info(">>> CacheManager is configured with redis");
+        String prefixCacheName = getPrefixCacheName();
+        log.info(">>> CacheManager is configured with redis: Prefix={}", prefixCacheName);
 
         ObjectMapper mapper = createObjectMapperForSerializer();
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration
             .defaultCacheConfig()
-            .prefixCacheNameWith(applicationName + "::")
+            .prefixCacheNameWith(prefixCacheName)
             .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
             .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer(mapper)));
 
@@ -55,6 +61,14 @@ public class CacheConfig implements CachingConfigurer {
             .cacheDefaults(redisCacheConfiguration)
             .withInitialCacheConfigurations(redisCacheConfigMap)
             .build();
+    }
+
+    private String getPrefixCacheName() {
+        String prefixCacheName = applicationName + "::";
+        if (environmentUtils.isLocalProfile()) {
+            return environmentUtils.getLocalProfile() + ":" + prefixCacheName;
+        }
+        return prefixCacheName;
     }
 
     private ObjectMapper createObjectMapperForSerializer() {
