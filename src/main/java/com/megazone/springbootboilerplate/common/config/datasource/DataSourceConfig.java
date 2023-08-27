@@ -6,11 +6,13 @@ import java.util.Map;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
 @RequiredArgsConstructor
+@ConditionalOnBean(DataSourceProperties.class)
 @Configuration
 public class DataSourceConfig {
 
