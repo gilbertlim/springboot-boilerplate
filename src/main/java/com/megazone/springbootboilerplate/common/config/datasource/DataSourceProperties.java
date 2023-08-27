@@ -2,29 +2,33 @@ package com.megazone.springbootboilerplate.common.config.datasource;
 
 import com.zaxxer.hikari.HikariConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @ConfigurationProperties(prefix = "spring.datasource")
 public record DataSourceProperties(
-    Map<String, FlexibleDataSourceInfo> groups,
-    HikariConfig hikari
+    Map<String, DataSourceGroup> groups,
+    HikariConfig hikariConfig
 ) {
-    public DataSourceProperties(Map<String, FlexibleDataSourceInfo> groups, HikariConfig hikari) {
+
+    public DataSourceProperties(Map<String, DataSourceGroup> groups, HikariConfig hikariConfig) {
         this.groups = groups;
-        this.hikari = Objects.requireNonNullElse(hikari, new HikariConfig());
+        this.hikariConfig = Objects.requireNonNullElse(hikariConfig, new HikariConfig());
     }
 
-    public record FlexibleDataSourceInfo(
-        Boolean primary,
+    public record DataSourceGroup(
+        boolean primary,
         ReaderDataSourceInfo reader,
         WriterDataSourceInfo writer
     ) {
 
-        public FlexibleDataSourceInfo(Boolean primary, ReaderDataSourceInfo reader, WriterDataSourceInfo writer) {
-            this.primary = Objects.requireNonNullElse(primary, false);
+        public DataSourceGroup(
+            @DefaultValue("false") boolean primary,
+            ReaderDataSourceInfo reader,
+            WriterDataSourceInfo writer
+        ) {
+            this.primary = primary;
             this.reader = reader;
             this.writer = writer;
         }

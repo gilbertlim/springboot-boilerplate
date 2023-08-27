@@ -2,20 +2,22 @@ package com.megazone.springbootboilerplate.common.config.datasource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
 import javax.sql.DataSource;
 import java.util.Objects;
 
 public class DataSourceFactory {
-    public static DataSource generateDataSource(String key, DataSourceProperties.FlexibleDataSourceInfo flexibleDataSourceInfo, HikariConfig defaultHikariConfig) {
-        if (flexibleDataSourceInfo.isCluster()) {
-            HikariConfig readerConfig = setHikariConfig(flexibleDataSourceInfo.reader(), defaultHikariConfig);
+
+    public static DataSource generateDataSource(String key, DataSourceProperties.DataSourceGroup dataSourceGroup, HikariConfig defaultHikariConfig) {
+        if (dataSourceGroup.isCluster()) {
+            HikariConfig readerConfig = setHikariConfig(dataSourceGroup.reader(), defaultHikariConfig);
             HikariDataSource reader = hikariDataSource(key, readerConfig);
-            HikariConfig writerConfig = setHikariConfig(flexibleDataSourceInfo.writer(), defaultHikariConfig);
+            HikariConfig writerConfig = setHikariConfig(dataSourceGroup.writer(), defaultHikariConfig);
             HikariDataSource writer = hikariDataSource(key, writerConfig);
             return new RoutingDataSource(reader, writer);
         }
 
-        HikariConfig config = setHikariConfig(flexibleDataSourceInfo.getOne(), defaultHikariConfig);
+        HikariConfig config = setHikariConfig(dataSourceGroup.getOne(), defaultHikariConfig);
         return hikariDataSource(key, config);
     }
 
