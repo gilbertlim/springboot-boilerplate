@@ -1,6 +1,6 @@
-##----------------------------------
+####----------------------------------
 ## Server - Servlet Container
-##----------------------------------
+####----------------------------------
 server:
   tomcat:
     connection-timeout: 2800
@@ -14,11 +14,11 @@ server:
 
 
 
-##----------------------------------
+####----------------------------------
 ## Spring
-##----------------------------------
+####----------------------------------
 spring:
-  ## Basic
+  #### Basic
   profiles.active: local
   application:
     name: shop
@@ -26,7 +26,7 @@ spring:
   lifecycle.timeout-per-shutdown-phase: 1m
   h2.console.enabled: true
 
-  ## DataSource
+  #### DataSource
   datasource:
     groups:
       basic:
@@ -44,13 +44,26 @@ spring:
         writer:
           url: jdbc:log4jdbc:h2:mem:testdb
           username: ENC(g1Tdt3j8hxw1qkwl/o5VbaITq9+dM8wzVYVSEUlQTK8S0PNkLzv4I8uGvcDke7xT)
+    hikari:
+      minimum-idle: 20
+      maximum-pool-size: 20
+      connection-timeout: 2700
+      validation-timeout: 2100
+      leak-detection-threshold: 59000
+      max-lifetime: 60000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 500
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        rewriteBatchedStatements: true  #saveAll 성능 개선
 
-  ## Spring Data
+  #### Spring Data
   data:
-    ## JPA
+    #### JPA
     #nothing
 
-    ## Redis
+    #### Redis
     redis:
       host: localhost
       #cluster:
@@ -61,7 +74,30 @@ spring:
         pool:
           min-idle: 8
 
-  ## Kafka
+  #### Spring Cloud
+  cloud:
+    #### Open Feign
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 2000
+            read-timeout: 2000
+            logger-level: BASIC
+          member: ## Sample - Member Service
+            url: ${other-service.services.member.url}
+            logger-level: FULL
+          product: ## Sample - Product Service
+            url: ${other-service.services.product.url}
+            logger-level: FULL
+          order: ## Sample - Order Service
+            url: ${other-service.services.order.url}
+            logger-level: FULL
+          review: ## Sample - Review Service
+            url: ${other-service.services.review.url}
+            logger-level: FULL
+
+  #### Kafka
   kafka:
     producer:
       bootstrap-servers: localhost:9092
@@ -74,9 +110,9 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
-  ## TaskExecutor
+  #### TaskExecutor
   task:
-    ## @Scheduled
+    #### @Scheduled
     scheduling:
       pool.size: 5
       #thread-name-prefix: scheduling-
@@ -84,7 +120,7 @@ spring:
         await-termination: true
         await-termination-period: 30
 
-    ## @Async
+    #### @Async
     execution:
       pool:
         core-size: 20
@@ -97,9 +133,25 @@ spring:
 
 
 
-##----------------------------------
+####----------------------------------
+## Other Service
+####----------------------------------
+other-service:
+  services:
+    member: ## Sample - Member Service
+      url: http://member.mall.mz.co.kr
+    product: ## Sample - Product Service
+      url: http://product.mall.mz.co.kr
+    order: ## Sample - Order Service
+      url: http://order.mall.mz.co.kr
+    review: ## Sample - Review Service
+      url: http://review.mall.mz.co.kr
+
+
+
+####----------------------------------
 ## Scheduling Management
-##----------------------------------
+####----------------------------------
 scheduling:
   enabled: false
   groups:
@@ -110,18 +162,9 @@ scheduling:
 
 
 
-##----------------------------------
-## FeignClient
-##----------------------------------
-feign:
-  backoffice:
-    base-url: http://bo.mz.com
-
-
-
-##----------------------------------
+####----------------------------------
 ## Logging
-##----------------------------------
+####----------------------------------
 logging:
   pattern:
     level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}][%X{userId:-}][%X{userIp:-}]"
@@ -140,9 +183,9 @@ logging:
 
 
 
-##----------------------------------
+####----------------------------------
 ## Actuator
-##----------------------------------
+####----------------------------------
 management:
   endpoints:
     web:
