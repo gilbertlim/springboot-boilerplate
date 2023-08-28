@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.shop.domain.repository;
+package com.megazone.springbootboilerplate.shop.domain.dip.repository;
 
 
 import com.megazone.springbootboilerplate.shop.application.dto.response.query.ShopWithReviewsQuery;

@@ -1,6 +1,7 @@
-package com.megazone.springbootboilerplate.shop.infrastructure.client;
+package com.megazone.springbootboilerplate.shop.infrastructure.dip.client;
 
-import com.megazone.springbootboilerplate.shop.domain.client.MemberClient;
+import com.megazone.springbootboilerplate.shop.domain.dip.client.MemberClient;
+import com.megazone.springbootboilerplate.shop.infrastructure.provider.feign.MemberFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

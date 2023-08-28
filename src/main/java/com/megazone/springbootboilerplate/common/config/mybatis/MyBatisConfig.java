@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @RequiredArgsConstructor
-@MapperScan(basePackages = "com.megazone.springbootboilerplate.*.infrastructure.mapper")
+@MapperScan(basePackages = "com.megazone.springbootboilerplate.*.infrastructure.provider.mybatis")
 @Configuration
 public class MyBatisConfig {
 
@@ -24,7 +24,7 @@ public class MyBatisConfig {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setTypeAliasesPackage("com.megazone.springbootboilerplate.*.domain, com.megazone.springbootboilerplate.*.application.dto.response.query");
-        factoryBean.setMapperLocations(context.getResources("classpath:com/megazone/springbootboilerplate/*/infrastructure/mapper/*.xml"));
+        factoryBean.setMapperLocations(context.getResources("classpath:com/megazone/springbootboilerplate/*/infrastructure/provider/mybatis/*.xml"));
         factoryBean.setTypeHandlers(typeHandlers.toArray(TypeHandler[]::new));
         return factoryBean.getObject();
     }

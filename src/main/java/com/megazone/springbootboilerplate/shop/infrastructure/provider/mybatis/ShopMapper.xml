@@ -3,7 +3,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.megazone.springbootboilerplate.shop.infrastructure.mapper.ShopMapper">
+<mapper namespace="com.megazone.springbootboilerplate.shop.infrastructure.provider.mybatis.ShopMapper">
 	<resultMap id="shopRowMapper" type="Shop">
 		<result property="id" column="shop_id" />
 		<result property="name" column="shop_name" />
@@ -27,11 +27,11 @@
 	</resultMap>
 
 	<select id="findShopReviewsById" resultMap="shopWithReviewsMapper">
-		SELECT s.shop_id, s.shop_name, r.review_id, r.review_contents
-		FROM shop s
-		     LEFT JOIN review r
-				ON s.shop_id = r.shop_id
-		WHERE s.shop_id = #{id}
+		select s.shop_id, s.shop_name, r.review_id, r.review_contents
+		from shop s
+		     left join review r
+				on s.shop_id = r.shop_id
+		where s.shop_id = #{id}
 	</select>
 
 	<!--    <insert id="save" parameterType="Shop" useGeneratedKeys="true" keyProperty="id">-->

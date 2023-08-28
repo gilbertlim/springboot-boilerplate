@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.shop.infrastructure.eventhandler;
+package com.megazone.springbootboilerplate.shop.infrastructure.event.handler;
 
 import com.megazone.springbootboilerplate.common.event.EventHandler;
 import com.megazone.springbootboilerplate.shop.domain.ShopTierEvent;

@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.shop.infrastructure.client;
+package com.megazone.springbootboilerplate.shop.infrastructure.provider.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

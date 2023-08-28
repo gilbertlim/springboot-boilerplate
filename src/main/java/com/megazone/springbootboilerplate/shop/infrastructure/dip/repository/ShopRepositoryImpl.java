@@ -1,9 +1,9 @@
-package com.megazone.springbootboilerplate.shop.infrastructure.repository;
+package com.megazone.springbootboilerplate.shop.infrastructure.dip.repository;
 
 import com.megazone.springbootboilerplate.shop.application.dto.response.query.ShopWithReviewsQuery;
 import com.megazone.springbootboilerplate.shop.domain.Shop;
-import com.megazone.springbootboilerplate.shop.domain.repository.ShopRepository;
-import com.megazone.springbootboilerplate.shop.infrastructure.mapper.ShopMapper;
+import com.megazone.springbootboilerplate.shop.domain.dip.repository.ShopRepository;
+import com.megazone.springbootboilerplate.shop.infrastructure.provider.mybatis.ShopMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

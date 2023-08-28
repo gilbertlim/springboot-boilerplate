@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.shop.infrastructure.mapper;
+package com.megazone.springbootboilerplate.shop.infrastructure.provider.mybatis;
 
 import com.megazone.springbootboilerplate.shop.application.dto.response.query.ShopWithReviewsQuery;
 import com.megazone.springbootboilerplate.shop.domain.Shop;

@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.shop.infrastructure.mapper;
+package com.megazone.springbootboilerplate.shop.infrastructure.provider.mybatis;
 
 import com.megazone.springbootboilerplate.shop.domain.tier.ShopTierType;
 import org.apache.ibatis.type.BaseTypeHandler;
