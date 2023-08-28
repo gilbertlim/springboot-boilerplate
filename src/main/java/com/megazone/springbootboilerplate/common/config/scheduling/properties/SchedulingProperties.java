@@ -32,7 +32,7 @@ public record SchedulingProperties(
     }
 
 
-    private record SchedulingGroup(boolean enabled) {
+    public record SchedulingGroup(boolean enabled) {
 
         public SchedulingGroup(
             @DefaultValue("true") boolean enabled
