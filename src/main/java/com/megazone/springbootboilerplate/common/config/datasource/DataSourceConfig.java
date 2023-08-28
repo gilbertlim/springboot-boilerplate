@@ -49,7 +49,6 @@ public class DataSourceConfig {
     private static BeanDefinitionCustomizer primaryBeanCustomizer(DataSourceProperties.DataSourceGroup dataSourceInfo, DataSource dataSource) {
         return beanDefinition -> {
             beanDefinition.getConstructorArgumentValues().addGenericArgumentValue(dataSource);
-            beanDefinition.isSingleton();
             if (dataSourceInfo.primary()) {
                 beanDefinition.setPrimary(true);
             }
