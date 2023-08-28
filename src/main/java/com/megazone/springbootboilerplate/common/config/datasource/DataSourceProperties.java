@@ -9,12 +9,12 @@ import java.util.*;
 @ConfigurationProperties(prefix = "spring.datasource")
 public record DataSourceProperties(
     Map<String, DataSourceGroup> groups,
-    HikariConfig hikariConfig
+    HikariConfig hikari
 ) {
 
-    public DataSourceProperties(Map<String, DataSourceGroup> groups, HikariConfig hikariConfig) {
+    public DataSourceProperties(Map<String, DataSourceGroup> groups, HikariConfig hikari) {
         this.groups = groups;
-        this.hikariConfig = Objects.requireNonNullElse(hikariConfig, new HikariConfig());
+        this.hikari = Objects.requireNonNullElse(hikari, new HikariConfig());
     }
 
     public record DataSourceGroup(

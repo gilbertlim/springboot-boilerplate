@@ -4,7 +4,6 @@ import com.zaxxer.hikari.HikariConfig;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
@@ -13,7 +12,6 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 @RequiredArgsConstructor
-@ConditionalOnBean(DataSourceProperties.class)
 @Configuration
 public class DataSourceConfig {
 
@@ -27,7 +25,7 @@ public class DataSourceConfig {
         for (var entry: dataSourceProperties.groups().entrySet()) {
             String key = entry.getKey();
             var dataSourceInfo = entry.getValue();
-            HikariConfig defaultHikariConfig = dataSourceProperties.hikariConfig();
+            HikariConfig defaultHikariConfig = dataSourceProperties.hikari();
             DataSource dataSource = DataSourceFactory.generateDataSource(key, dataSourceInfo, defaultHikariConfig);
             registerDataSourceBean(entry, dataSource);
         }
