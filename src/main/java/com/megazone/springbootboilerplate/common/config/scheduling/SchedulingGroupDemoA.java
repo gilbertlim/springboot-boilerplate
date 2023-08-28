@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 @SchedulingGrouping({"demoA"})
 public class SchedulingGroupDemoA {
 
-    @Scheduled(cron = "*/10 * * * * *")
-    @SchedulerLock(name = "schedulerLockA", lockAtMostFor = "9s", lockAtLeastFor = "9s")
+    @Scheduled(cron = "*/30 * * * * *")
+    @SchedulerLock(name = "schedulerLockA", lockAtMostFor = "29s", lockAtLeastFor = "29s")
     public void scheduleA() {
         log.info("[{}] 스케줄러 실행: {}", Thread.currentThread().getName(), DateTimeUtils.nowFormat());
     }
