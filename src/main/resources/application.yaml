@@ -153,7 +153,7 @@ other-service:
 ## Scheduling Management
 ####----------------------------------
 scheduling:
-  enabled: false
+  enabled: true
   groups:
     demoA:
       enabled: true
