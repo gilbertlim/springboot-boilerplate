@@ -28,6 +28,7 @@ public abstract class DiscountPolicyChain {
         return next != null;
     }
 
+    // TODO: primitive 값 대신 Money 같은 클래스로 래핑
     public abstract int discount(int money);
 
     public abstract boolean isSupported(int money);
