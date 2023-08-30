@@ -2,10 +2,11 @@ version: "3.7"
 
 services:
   redis:
-    container_name: redis
-    image: redis:7.2
+    container_name: redis-stack
+    image: redis/redis-stack
     ports:
       - "6379:6379"
+      - "8001:8001"
 
   zookeeper:
     container_name: zookeeper
