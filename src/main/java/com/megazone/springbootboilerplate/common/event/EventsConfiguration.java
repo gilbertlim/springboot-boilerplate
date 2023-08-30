@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
 @Configuration
-public class EventsConfiguration implements InitializingBean{
+public class EventsConfiguration implements InitializingBean {
 
     private final ApplicationContext applicationContext;
 
