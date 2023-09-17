@@ -1,3 +1,8 @@
+server:
+  shutdown: graceful
+
 spring:
   application:
     name: shop
+
+  lifecycle.timeout-per-shutdown-phase: 1m
