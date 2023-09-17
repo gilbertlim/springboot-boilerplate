@@ -2,6 +2,7 @@ server:
   shutdown: graceful
 
 spring:
+  profiles.active: local
   application:
     name: shop
 
