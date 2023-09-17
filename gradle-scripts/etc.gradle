@@ -1,0 +1,18 @@
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java", "src/main/resources"]
+            include "**/*.xml"
+        }
+    }
+}
+
+tasks.register('copyResourcesMain', Copy) {
+    from(sourceSets.main.resources.srcDirs) {
+        exclude("**/*.java")
+    }
+    into("build/classes/java/main")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.compileJava.dependsOn(copyResourcesMain)

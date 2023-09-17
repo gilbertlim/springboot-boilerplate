@@ -5,6 +5,7 @@ spring:
   profiles.active: local
   application:
     name: shop
+  base-package: com.megazone.springbootboilerplate
 
   lifecycle.timeout-per-shutdown-phase: 1m
 
@@ -34,6 +35,14 @@ spring:
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
         rewriteBatchedStatements: true  #saveAll ?? ??
+
+mybatis:
+  base-package: ${spring.base-package}.*.infrastructure.provider.mybatis
+  type-handlers-packages:
+    - ${mybatis.base-package}.typehandler
+  type-aliases-packages:
+    - ${spring.base-package}.*.domain
+    - ${spring.base-package}.*.application.dto.response.query
 
 logging:
   level:
