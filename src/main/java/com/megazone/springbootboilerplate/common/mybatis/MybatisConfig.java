@@ -13,7 +13,7 @@ import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 
 @RequiredArgsConstructor
 @EnableAutoConfiguration(exclude = MybatisAutoConfiguration.class)
-@MapperScan(basePackages = "${mybatis.base-package}.mapper", sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(basePackages = "${mybatis.base-package}" + ".mapper", sqlSessionFactoryRef = "sqlSessionFactory")
 @Configuration
 public class MybatisConfig {
 
