@@ -1,18 +1,15 @@
 sourceSets {
     main {
         resources {
-            srcDirs = ["src/main/java", "src/main/resources"]
-            include "**/*.xml"
+            srcDir('src/main/java')
         }
     }
 }
 
-tasks.register('copyResourcesMain', Copy) {
-    from(sourceSets.main.resources.srcDirs) {
-        exclude("**/*.java")
-    }
-    into("build/classes/java/main")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+bootJar {
+    archiveFileName = 'application.jar'
 }
 
-tasks.compileJava.dependsOn(copyResourcesMain)
+clean {
+    delete files('out', 'src/main/generated')
+}
