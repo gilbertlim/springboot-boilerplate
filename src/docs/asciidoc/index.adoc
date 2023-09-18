@@ -1,0 +1,25 @@
+= REST API 문서
+:toc-title: API 목록
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+:operation-code-response-fields-title: 공통 코드
+:operation-http-request-title: HTTP 요청
+:operation-path-parameters-title: Path 변수
+:operation-http-response-title: HTTP 응답
+:operation-response-headers-title: 응답 헤더
+:operation-request-fields-title: 요청 본문
+:operation-response-fields-title: 응답 본문
+
+== 공통 코드
+
+operation::code-response[snippets='code-response-fields']
+
+== Shop
+
+include::shop.adoc[]
+

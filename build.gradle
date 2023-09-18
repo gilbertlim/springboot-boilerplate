@@ -1,7 +1,15 @@
+buildscript {
+    ext {
+        restdocsApiSpecVersion = '0.18.2'
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.2'
     id 'io.spring.dependency-management' version '1.1.2'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'com.epages.restdocs-api-spec' version "$restdocsApiSpecVersion"
 }
 
 group = 'com.megazone'
@@ -15,11 +23,14 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    asciidoctorExt
 }
 
 repositories {
     mavenCentral()
 }
+
+apply from: 'gradle-scripts/docs.gradle'
 
 ext {
     mybatisVersion = '3.0.2'
@@ -45,6 +56,9 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.mybatis.spring.boot:mybatis-spring-boot-starter-test:${mybatisVersion}"
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation "com.epages:restdocs-api-spec-mockmvc:${restdocsApiSpecVersion}"
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 }
 
 apply from: 'gradle-scripts/etc.gradle'

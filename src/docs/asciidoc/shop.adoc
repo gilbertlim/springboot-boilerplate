@@ -1,0 +1,17 @@
+
+[[shop]]
+== **Shop 조회**
+// operation::shop-controller-test/find-shop[snippets='http-request,path-parameters,http-response,response-fields']
+operation::shop-controller-test/find-shop[]
+
+== **Shop 리스트 조회**
+// operation::shop-controller-test/find-shops[snippets='http-request,http-response,response-fields']
+operation::shop-controller-test/find-shops[]
+
+== **Shop 등록**
+// operation::shop-controller-test/create-shop[snippets='http-request,request-fields,http-response,response-headers,response-fields']
+operation::shop-controller-test/create-shop[]
+
+== **Shop 수정**
+// operation::shop-controller-test/update-shop[snippets='http-request,path-parameters,http-response,response-fields']
+operation::shop-controller-test/update-shop[]
