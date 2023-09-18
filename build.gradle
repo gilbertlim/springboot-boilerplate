@@ -50,6 +50,10 @@ dependencies {
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
+    implementation 'org.springframework.boot:spring-boot-starter-actuator' // tracer dependency
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave' // tracer
+    implementation 'io.micrometer:micrometer-registry-prometheus' // for prometheus metrics
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
