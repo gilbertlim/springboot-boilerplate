@@ -23,6 +23,7 @@ repositories {
 
 ext {
     mybatisVersion = '3.0.2'
+    mapStructVersion = '1.5.5.Final'
 }
 
 dependencies {
@@ -36,6 +37,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.mybatis.spring.boot:mybatis-spring-boot-starter-test:${mybatisVersion}"

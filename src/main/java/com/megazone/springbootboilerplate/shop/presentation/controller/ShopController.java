@@ -3,20 +3,29 @@ package com.megazone.springbootboilerplate.shop.presentation.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 
 import com.megazone.springbootboilerplate.common.dto.CommonResponse;
+import com.megazone.springbootboilerplate.common.dto.CommonResponseType;
 import com.megazone.springbootboilerplate.shop.application.ShopReadService;
+import com.megazone.springbootboilerplate.shop.application.ShopWriteService;
+import com.megazone.springbootboilerplate.shop.application.dto.request.ShopCreateRequest;
 import com.megazone.springbootboilerplate.shop.application.dto.response.ShopResponse;
 
 @RequiredArgsConstructor
 @RestController
 public class ShopController {
 
+    private final ShopWriteService shopWriteService;
     private final ShopReadService shopReadService;
+
+    @PostMapping("/shops")
+    public ResponseEntity<CommonResponse<ShopResponse>> create(@RequestBody @Validated ShopCreateRequest request) {
+        ShopResponse shopResponse = shopWriteService.create(request);
+        return CommonResponse.created(shopResponse, "/shops/" + shopResponse.id());
+    }
 
     @GetMapping("/shops")
     public ResponseEntity<CommonResponse<List<ShopResponse>>> findAll() {
@@ -28,4 +37,8 @@ public class ShopController {
         return CommonResponse.ok(shopReadService.findById(shopId));
     }
 
+    @PutMapping("/shops/{shopId}:{shopAction}")
+    public ResponseEntity<CommonResponse<ShopResponse>> update(@PathVariable Long shopId, @PathVariable String shopAction) {
+        return CommonResponse.withData(shopWriteService.update(shopId, shopAction), CommonResponseType.UPDATE);
+    }
 }

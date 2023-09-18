@@ -9,9 +9,15 @@ import com.megazone.springbootboilerplate.shop.domain.Shop;
 
 public interface ShopRepository {
 
+    Shop save(Shop shop);
+
     List<Shop> findAll();
 
     Optional<Shop> findById(Long id);
 
     Optional<ShopWithReviewsQuery> findShopReviewsById(Long id);
+
+    Optional<Shop> findByName(String name);
+
+    void update(Shop shop);
 }
