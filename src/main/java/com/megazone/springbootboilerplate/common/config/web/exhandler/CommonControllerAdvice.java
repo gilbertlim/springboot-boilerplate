@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.web.exhandler;
+package com.megazone.springbootboilerplate.common.config.web.exhandler;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.mybatis;
+package com.megazone.springbootboilerplate.common.config.mybatis;
 
 import java.util.List;
 

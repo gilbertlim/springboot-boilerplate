@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.datasource;
+package com.megazone.springbootboilerplate.common.config.datasource;
 
 import jakarta.validation.constraints.NotNull;
 import javax.sql.DataSource;

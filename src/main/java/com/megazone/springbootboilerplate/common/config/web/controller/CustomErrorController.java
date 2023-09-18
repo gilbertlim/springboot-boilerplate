@@ -1,4 +1,4 @@
-package com.megazone.springbootboilerplate.common.web.controller;
+package com.megazone.springbootboilerplate.common.config.web.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
