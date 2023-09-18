@@ -1,15 +1,17 @@
 package com.megazone.springbootboilerplate.shop.application;
 
-import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import com.megazone.springbootboilerplate.common.event.Events;
 import com.megazone.springbootboilerplate.common.exception.DuplicateDataException;
 import com.megazone.springbootboilerplate.common.exception.NotFoundException;
 import com.megazone.springbootboilerplate.shop.application.dto.request.ShopCreateRequest;
 import com.megazone.springbootboilerplate.shop.application.dto.response.ShopResponse;
 import com.megazone.springbootboilerplate.shop.domain.Shop;
+import com.megazone.springbootboilerplate.shop.domain.event.ShopTierEvent;
 import com.megazone.springbootboilerplate.shop.domain.exception.ShopTierException;
 import com.megazone.springbootboilerplate.shop.domain.port.repository.ShopRepository;
 
@@ -29,10 +31,13 @@ public class ShopWriteService {
         Shop shop = new Shop(request.name(), request.address(), request.detailAddress());
         shopRepository.save(shop);
 
+        ShopTierEvent event = ShopTierEvent.tierCreated(shop.getId());
+        Events.publish(event);
+
         return ShopFieldMapper.INSTANCE.toShopResponse(shop);
     }
 
-    @CachePut(value = "shop", key = "#shopId")
+    @Cacheable(value = "shop", key = "#shopId")
     public ShopResponse update(Long shopId, String shopAction) {
         Shop shop = shopRepository.findById(shopId).orElseThrow(() -> new NotFoundException(shopId + " Shop을 찾을 수 없습니다."));
         switch (shopAction) {
@@ -41,6 +46,9 @@ public class ShopWriteService {
             default -> throw new ShopTierException(shopAction + " 요청이 올바르지 않습니다.");
         }
         shopRepository.update(shop);
+
+        ShopTierEvent event = ShopTierEvent.tierChanged(shop.getId());
+        Events.publish(event);
 
         return ShopFieldMapper.INSTANCE.toShopResponse(shop);
     }

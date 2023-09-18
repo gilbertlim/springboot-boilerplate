@@ -48,6 +48,17 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
+  data:
+    redis:
+      host: localhost
+      #cluster:
+      #  nodes: localhost
+      timeout: 500ms
+      connect-timeout: 200ms
+      lettuce:
+        pool:
+          min-idle: 8
+
 mybatis:
   base-package: ${spring.base-package}.*.infrastructure.provider.mybatis
   type-handlers-packages:
