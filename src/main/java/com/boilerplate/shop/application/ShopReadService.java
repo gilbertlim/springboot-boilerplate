@@ -1,6 +1,7 @@
 package com.boilerplate.shop.application;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.boilerplate.common.exception.NotFoundException;
 import com.boilerplate.shop.application.dto.response.ShopResponse;
 import com.boilerplate.shop.application.dto.response.query.ShopWithReviewsQuery;
+import com.boilerplate.shop.domain.port.client.MemberClient;
 import com.boilerplate.shop.domain.port.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class ShopReadService {
 
     private final ShopRepository shopRepository;
+    private final MemberClient memberClient;
 
     public List<ShopResponse> findAll() {
         return shopRepository.findAll()
@@ -37,4 +40,7 @@ public class ShopReadService {
             .orElseThrow(() -> new NotFoundException(id + " Shop을 찾을 수 없습니다."));
     }
 
+    public Optional<String> getMember(int memberId) {
+        return Optional.ofNullable(memberClient.getMember(memberId));
+    }
 }

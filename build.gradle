@@ -12,7 +12,7 @@ plugins {
     id 'com.epages.restdocs-api-spec' version "$restdocsApiSpecVersion"
 }
 
-group = 'com.megazone'
+group = 'com.boilerplate'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -36,6 +36,7 @@ ext {
     mybatisVersion = '3.0.2'
     mapStructVersion = '1.5.5.Final'
     shedlockVersion = '5.6.0'
+    springCloudVersion = '2022.0.4'
 }
 
 dependencies {
@@ -49,6 +50,9 @@ dependencies {
     implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}"
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     runtimeOnly 'com.mysql:mysql-connector-j'
+
+    implementation platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator' // tracer dependency
     implementation 'io.micrometer:micrometer-tracing-bridge-brave' // tracer

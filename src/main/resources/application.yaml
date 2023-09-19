@@ -59,6 +59,28 @@ spring:
         pool:
           min-idle: 8
 
+  cloud:
+    #### Open Feign
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 2000
+            read-timeout: 2000
+            logger-level: BASIC
+          member: ## Sample - Member Service
+            url: ${other-service.services.member.url}
+            logger-level: FULL
+          product: ## Sample - Product Service
+            url: ${other-service.services.product.url}
+            logger-level: FULL
+          order: ## Sample - Order Service
+            url: ${other-service.services.order.url}
+            logger-level: FULL
+          review: ## Sample - Review Service
+            url: ${other-service.services.review.url}
+            logger-level: FULL
+
 mybatis:
   base-package: ${spring.base-package}.*.infrastructure.provider.mybatis
   type-handlers-packages:
@@ -82,6 +104,17 @@ logging:
       audit: off
       resultset: off
       connection: off
+
+other-service:
+  services:
+    member: ## Sample - Member Service
+      url: http://member.mall.mz.co.kr
+    product: ## Sample - Product Service
+      url: http://product.mall.mz.co.kr
+    order: ## Sample - Order Service
+      url: http://order.mall.mz.co.kr
+    review: ## Sample - Review Service
+      url: http://review.mall.mz.co.kr
 
 management:
   endpoints:
