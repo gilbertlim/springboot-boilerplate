@@ -156,6 +156,19 @@ other-service:
 
 
 ####----------------------------------
+## Scheduling Management
+####----------------------------------
+scheduling:
+  enabled: true
+  groups:
+    demoA:
+      enabled: false
+    demoB:
+      enabled: false
+
+
+
+####----------------------------------
 ## Logging
 ####----------------------------------
 logging:
