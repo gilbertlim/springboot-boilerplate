@@ -5,7 +5,7 @@ spring:
   profiles.active: local
   application:
     name: shop
-  base-package: com.megazone.springbootboilerplate
+  base-package: com.boilerplate
 
   lifecycle.timeout-per-shutdown-phase: 1m
 
@@ -72,8 +72,8 @@ logging:
     level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}][%X{userId:-}][%X{userIp:-}]"
   level:
     #root: info
-    com.megazone.springbootboilerplate: debug
-    com.megazone.springbootboilerplate.feign: debug
+    com.boilerplate: debug
+    com.boilerplate.feign: debug
     org.springframework.web: info
     jdbc:
       sqlonly: debug
