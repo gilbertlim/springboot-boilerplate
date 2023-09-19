@@ -1,3 +1,6 @@
+####----------------------------------
+## Server - Servlet Container
+####----------------------------------
 server:
   shutdown: graceful
   tomcat:
@@ -9,7 +12,13 @@ server:
       min-spare: 200
   accept-count: 100
 
+
+
+####----------------------------------
+## Spring
+####----------------------------------
 spring:
+  #### Basic
   profiles.active: local
   application:
     name: shop
@@ -17,6 +26,7 @@ spring:
 
   lifecycle.timeout-per-shutdown-phase: 1m
 
+  #### DataSource
   datasource:
     reader:
       url: jdbc:log4jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
@@ -42,21 +52,11 @@ spring:
         prepStmtCacheSize: 500
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
-        rewriteBatchedStatements: true  #saveAll ?? ??
+        rewriteBatchedStatements: true  #saveAll 성능 개선
 
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    consumer:
-      bootstrap-servers: localhost:9092
-      group-id: ${spring.application.name}
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
+  #### Spring Data
   data:
+    #### Redis
     redis:
       host: localhost
       #cluster:
@@ -67,6 +67,7 @@ spring:
         pool:
           min-idle: 8
 
+  #### Spring Cloud
   cloud:
     #### Open Feign
     openfeign:
@@ -89,6 +90,24 @@ spring:
             url: ${other-service.services.review.url}
             logger-level: FULL
 
+  #### Kafka
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: ${spring.application.name}
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+
+
+####----------------------------------
+## Mybatis
+####----------------------------------
 mybatis:
   base-package: ${spring.base-package}.*.infrastructure.provider.mybatis
   type-handlers-packages:
@@ -97,6 +116,27 @@ mybatis:
     - ${spring.base-package}.*.domain
     - ${spring.base-package}.*.application.dto.response.query
 
+
+
+####----------------------------------
+## Other Service
+####----------------------------------
+other-service:
+  services:
+    member: ## Sample - Member Service
+      url: http://member.mall.mz.co.kr
+    product: ## Sample - Product Service
+      url: http://product.mall.mz.co.kr
+    order: ## Sample - Order Service
+      url: http://order.mall.mz.co.kr
+    review: ## Sample - Review Service
+      url: http://review.mall.mz.co.kr
+
+
+
+####----------------------------------
+## Logging
+####----------------------------------
 logging:
   pattern:
     level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}][%X{userId:-}][%X{userIp:-}]"
@@ -113,17 +153,11 @@ logging:
       resultset: off
       connection: off
 
-other-service:
-  services:
-    member: ## Sample - Member Service
-      url: http://member.mall.mz.co.kr
-    product: ## Sample - Product Service
-      url: http://product.mall.mz.co.kr
-    order: ## Sample - Order Service
-      url: http://order.mall.mz.co.kr
-    review: ## Sample - Review Service
-      url: http://review.mall.mz.co.kr
 
+
+####----------------------------------
+## Actuator
+####----------------------------------
 management:
   endpoints:
     web:
