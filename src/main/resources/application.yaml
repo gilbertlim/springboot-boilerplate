@@ -103,6 +103,27 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
+  #### TaskExecutor
+  task:
+    #### @Scheduled
+    scheduling:
+      pool.size: 5
+      #thread-name-prefix: scheduling-
+      shutdown:
+        await-termination: true
+        await-termination-period: 30
+
+    #### @Async
+    execution:
+      pool:
+        core-size: 20
+        max-size: 50
+        queue-capacity: 100
+      #thread-name-prefix: task-
+      shutdown:
+        await-termination: true
+        await-termination-period: 30
+
 
 
 ####----------------------------------
