@@ -1,4 +1,4 @@
-package com.boilerplate.shop.application;
+package com.boilerplate.shop.application.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.boilerplate.common.exception.NotFoundException;
-import com.boilerplate.shop.application.dto.response.ShopResponse;
-import com.boilerplate.shop.application.dto.response.query.ShopWithReviewsQuery;
+import com.boilerplate.shop.application.data.dto.response.ShopResponse;
+import com.boilerplate.shop.application.data.dto.response.query.ShopWithReviewsQuery;
 import com.boilerplate.shop.domain.port.client.MemberClient;
 import com.boilerplate.shop.domain.port.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;

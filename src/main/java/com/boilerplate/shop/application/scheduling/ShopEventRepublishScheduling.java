@@ -1,9 +1,10 @@
-package com.boilerplate.common.scheduling.event;
+package com.boilerplate.shop.application.scheduling;
 
 import java.util.List;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import com.boilerplate.common.config.scheduling.annotation.SchedulingGrouping;
 import com.boilerplate.common.utils.DateTimeUtils;
 import com.boilerplate.shop.domain.event.ShopTierEvent;
 import com.boilerplate.shop.infrastructure.provider.kafka.ShopTierEventPublishHandler;
@@ -14,6 +15,7 @@ import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 
 @Slf4j
 @RequiredArgsConstructor
+@SchedulingGrouping({"eventRepublishing"})
 @Component
 public class ShopEventRepublishScheduling {
 

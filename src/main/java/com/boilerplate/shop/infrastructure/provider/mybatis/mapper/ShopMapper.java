@@ -2,7 +2,7 @@ package com.boilerplate.shop.infrastructure.provider.mybatis.mapper;
 
 import java.util.List;
 
-import com.boilerplate.shop.application.dto.response.query.ShopWithReviewsQuery;
+import com.boilerplate.shop.application.data.dto.response.query.ShopWithReviewsQuery;
 import com.boilerplate.shop.domain.Shop;
 import org.apache.ibatis.annotations.*;
 

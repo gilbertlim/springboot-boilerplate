@@ -4,7 +4,7 @@ package com.boilerplate.shop.domain.port.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.boilerplate.shop.application.dto.response.query.ShopWithReviewsQuery;
+import com.boilerplate.shop.application.data.dto.response.query.ShopWithReviewsQuery;
 import com.boilerplate.shop.domain.Shop;
 
 public interface ShopRepository {

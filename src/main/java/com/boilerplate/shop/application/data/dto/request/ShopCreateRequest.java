@@ -1,4 +1,4 @@
-package com.boilerplate.shop.application.dto.request;
+package com.boilerplate.shop.application.data.dto.request;
 
 import jakarta.validation.constraints.NotEmpty;
 

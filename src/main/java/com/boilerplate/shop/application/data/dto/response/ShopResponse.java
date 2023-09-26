@@ -1,4 +1,4 @@
-package com.boilerplate.shop.application.dto.response;
+package com.boilerplate.shop.application.data.dto.response;
 
 import com.boilerplate.shop.domain.Shop;
 

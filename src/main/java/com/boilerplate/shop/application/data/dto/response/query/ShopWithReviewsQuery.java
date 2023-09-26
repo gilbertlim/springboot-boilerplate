@@ -1,4 +1,4 @@
-package com.boilerplate.shop.application.dto.response.query;
+package com.boilerplate.shop.application.data.dto.response.query;
 
 import java.util.List;
 

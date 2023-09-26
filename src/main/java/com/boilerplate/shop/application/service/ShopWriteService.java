@@ -1,4 +1,4 @@
-package com.boilerplate.shop.application;
+package com.boilerplate.shop.application.service;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -6,8 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.boilerplate.common.event.Events;
 import com.boilerplate.common.exception.DuplicateDataException;
 import com.boilerplate.common.exception.NotFoundException;
-import com.boilerplate.shop.application.dto.request.ShopCreateRequest;
-import com.boilerplate.shop.application.dto.response.ShopResponse;
+import com.boilerplate.shop.application.data.dto.request.ShopCreateRequest;
+import com.boilerplate.shop.application.data.dto.response.ShopResponse;
+import com.boilerplate.shop.application.data.mapper.ShopFieldMapper;
 import com.boilerplate.shop.domain.Shop;
 import com.boilerplate.shop.domain.event.ShopTierEvent;
 import com.boilerplate.shop.domain.exception.ShopTierException;

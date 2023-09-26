@@ -1,6 +1,6 @@
-package com.boilerplate.shop.application;
+package com.boilerplate.shop.application.data.mapper;
 
-import com.boilerplate.shop.application.dto.response.ShopResponse;
+import com.boilerplate.shop.application.data.dto.response.ShopResponse;
 import com.boilerplate.shop.domain.Shop;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;

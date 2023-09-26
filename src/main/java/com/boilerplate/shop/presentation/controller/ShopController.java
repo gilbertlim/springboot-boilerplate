@@ -7,10 +7,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.boilerplate.common.dto.CommonResponse;
 import com.boilerplate.common.dto.CommonResponseType;
-import com.boilerplate.shop.application.ShopReadService;
-import com.boilerplate.shop.application.ShopWriteService;
-import com.boilerplate.shop.application.dto.request.ShopCreateRequest;
-import com.boilerplate.shop.application.dto.response.ShopResponse;
+import com.boilerplate.shop.application.data.dto.request.ShopCreateRequest;
+import com.boilerplate.shop.application.data.dto.response.ShopResponse;
+import com.boilerplate.shop.application.service.ShopReadService;
+import com.boilerplate.shop.application.service.ShopWriteService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
