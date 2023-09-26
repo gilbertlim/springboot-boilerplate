@@ -11,7 +11,9 @@ public enum CommonResponseType {
     BAD_REQUEST("E-0", "요청이 올바르지 않음", HttpStatus.BAD_REQUEST),
     BIND_ERROR("E-1", "바인딩 에러", HttpStatus.BAD_REQUEST),
     NOT_FOUND("E-2", "정보를 찾을 수 없음", HttpStatus.NOT_FOUND),
-    DUPLICATE("E-3", "중복된 데이터", HttpStatus.CONFLICT);
+    DUPLICATE("E-3", "중복된 데이터", HttpStatus.CONFLICT),
+    UNAUTHORIZED("E-4", "인증되지 않음", HttpStatus.UNAUTHORIZED),
+    FORBIDDEN("E-5", "권한 없음", HttpStatus.FORBIDDEN);
 
     private final String code;
     private final String message;

@@ -1,0 +1,33 @@
+### 토큰 정보 확인
+GET localhost:8080/members/me
+Authorization: Bearer {{accessToken}}
+
+### 토큰 정보 확인
+GET localhost:8080/members/admin
+Authorization: Bearer {{accessToken}}
+
+### 멤버 토큰 요청
+POST localhost:8080/login
+
+{
+  "type": "token",
+  "id": "member",
+  "password": "password"
+}
+
+### 어드민 토큰 요청
+POST localhost:8080/login
+
+{
+  "type": "token",
+  "id": "admin",
+  "password": "password"
+}
+
+### 리프레시 토큰 요청
+POST localhost:8080/login
+
+{
+  "type": "refresh",
+  "refreshToken": "{{refreshToken}}"
+}

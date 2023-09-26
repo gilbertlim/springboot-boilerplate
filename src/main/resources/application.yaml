@@ -2,6 +2,7 @@
 ## Server - Servlet Container
 ####----------------------------------
 server:
+  port: 8080
   shutdown: graceful
   tomcat:
     connection-timeout: 2800
@@ -161,10 +162,24 @@ other-service:
 scheduling:
   enabled: true
   groups:
+    eventRepublishing:
+      enabled: false
     demoA:
       enabled: false
     demoB:
       enabled: false
+
+
+
+####----------------------------------
+## Security
+####----------------------------------
+jwt:
+  secret-key: ${SECRET_KEY}
+  access:
+    expiration-time: 1h
+  refresh:
+    expiration-time: 14d
 
 
 
