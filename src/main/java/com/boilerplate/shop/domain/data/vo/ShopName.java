@@ -1,4 +1,4 @@
-package com.boilerplate.shop.domain;
+package com.boilerplate.shop.domain.data.vo;
 
 import com.boilerplate.shop.domain.exception.ShopNameException;
 import lombok.*;

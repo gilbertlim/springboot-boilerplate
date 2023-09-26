@@ -1,4 +1,4 @@
-package com.boilerplate.shop.domain.tier;
+package com.boilerplate.shop.domain.data.vo.type;
 
 import com.boilerplate.shop.domain.exception.ShopTierException;
 import lombok.AllArgsConstructor;

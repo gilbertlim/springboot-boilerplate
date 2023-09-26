@@ -4,7 +4,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import com.boilerplate.common.utils.ValidationUtils;
-import com.boilerplate.shop.domain.ShopName;
+import com.boilerplate.shop.domain.data.vo.ShopName;
 
 public class ShopNameValidator implements ConstraintValidator<ShopNameLength, String> {
 

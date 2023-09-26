@@ -1,6 +1,8 @@
-package com.boilerplate.shop.domain;
+package com.boilerplate.shop.domain.data.entity;
 
-import com.boilerplate.shop.domain.tier.*;
+import com.boilerplate.shop.domain.data.vo.ShopAddress;
+import com.boilerplate.shop.domain.data.vo.ShopName;
+import com.boilerplate.shop.domain.data.vo.type.*;
 import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

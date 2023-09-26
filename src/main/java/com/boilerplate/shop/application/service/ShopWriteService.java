@@ -9,7 +9,7 @@ import com.boilerplate.common.exception.NotFoundException;
 import com.boilerplate.shop.application.data.dto.request.ShopCreateRequest;
 import com.boilerplate.shop.application.data.dto.response.ShopResponse;
 import com.boilerplate.shop.application.data.mapper.ShopFieldMapper;
-import com.boilerplate.shop.domain.Shop;
+import com.boilerplate.shop.domain.data.entity.Shop;
 import com.boilerplate.shop.domain.event.ShopTierEvent;
 import com.boilerplate.shop.domain.exception.ShopTierException;
 import com.boilerplate.shop.domain.port.repository.ShopRepository;

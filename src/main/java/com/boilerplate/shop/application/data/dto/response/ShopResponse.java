@@ -1,6 +1,6 @@
 package com.boilerplate.shop.application.data.dto.response;
 
-import com.boilerplate.shop.domain.Shop;
+import com.boilerplate.shop.domain.data.entity.Shop;
 
 public record ShopResponse(
     Long id,

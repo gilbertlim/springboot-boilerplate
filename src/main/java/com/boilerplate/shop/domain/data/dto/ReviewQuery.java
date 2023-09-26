@@ -1,4 +1,4 @@
-package com.boilerplate.shop.application.data.dto.response.query;
+package com.boilerplate.shop.domain.data.dto;
 
 import lombok.*;
 

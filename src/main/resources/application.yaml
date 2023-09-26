@@ -131,12 +131,12 @@ spring:
 ## Mybatis
 ####----------------------------------
 mybatis:
-  base-package: ${spring.base-package}.*.infrastructure.provider.mybatis
+  base-package: ${spring.base-package}.*.infrastructure.provider.mybatis.**
+  type-aliases-packages:
+    - ${spring.base-package}.*.domain.data.**
+    - ${spring.base-package}.*.domain.event.**
   type-handlers-packages:
     - ${mybatis.base-package}.typehandler
-  type-aliases-packages:
-    - ${spring.base-package}.*.domain
-    - ${spring.base-package}.*.application.dto.response.query
 
 
 

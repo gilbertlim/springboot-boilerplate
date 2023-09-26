@@ -1,7 +1,7 @@
 package com.boilerplate.shop.application.data.mapper;
 
 import com.boilerplate.shop.application.data.dto.response.ShopResponse;
-import com.boilerplate.shop.domain.Shop;
+import com.boilerplate.shop.domain.data.entity.Shop;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
