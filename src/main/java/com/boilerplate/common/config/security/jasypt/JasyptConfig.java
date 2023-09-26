@@ -1,17 +1,14 @@
-package com.boilerplate.common.config.security;
+package com.boilerplate.common.config.security.jasypt;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 
-//@Profile("local")
+@Profile("local")
 @EnableEncryptableProperties
-@ConditionalOnProperty(prefix = "jasypt.encryptor", name = "password")
 @Configuration
 public class JasyptConfig {
 
