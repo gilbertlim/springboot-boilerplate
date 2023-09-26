@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import com.boilerplate.shop.application.data.dto.request.ShopCreateRequest;
 import com.boilerplate.shop.application.data.dto.response.ShopResponse;
@@ -16,8 +17,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 
-import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
-import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
+import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
@@ -90,10 +90,14 @@ class ShopControllerTest extends Documentation {
         BDDMockito.given(shopWriteService.create(request)).willReturn(response);
 
         mockMvc.perform(post("/shops")
+                .header(HttpHeaders.AUTHORIZATION, BEARER_JWT)
                 .content(objectMapper.writeValueAsBytes(request))
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isCreated())
             .andDo(document("Shop 등록", "Shop 등록",
+                    requestHeaders(
+                        headerWithName("Authorization").description("Bearer JWT")
+                    ),
                     requestFields(
                         fieldWithPath("name").description("Shop 이름").attributes(constraintsAttribute("최소 2자 +\n최대 15자")),
                         fieldWithPath("address").description("Shop 도로명 주소"),
@@ -120,9 +124,13 @@ class ShopControllerTest extends Documentation {
         BDDMockito.given(shopWriteService.update(1L, "upgrade")).willReturn(response);
 
         mockMvc.perform(put("/shops/{shopId}:{shopAction}", 1L, "upgrade")
+                .header(HttpHeaders.AUTHORIZATION, BEARER_JWT)
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andDo(document("Shop 등급 수정", "Shop 등급 수정",
+                    requestHeaders(
+                        headerWithName("Authorization").description("Bearer JWT")
+                    ),
                     pathParameters(
                         parameterWithName("shopId").description("Shop ID"),
                         parameterWithName("shopAction").description("""

@@ -29,10 +29,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @ExtendWith(RestDocumentationExtension.class)
 abstract public class Documentation {
 
+    protected static final String BEARER_JWT = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Im5vb3NlIiwiaWF0IjoxNTE2MjM5MDIyfQ.gq_ho92Z170Gf0KO877mWjfTwlHfvvsSGttWfYbUdfE";
     private static final List<FieldDescriptor> COMMON_FIELDS = List.of(
         fieldWithPath("code").description("API 응답 코드"),
         fieldWithPath("message").description("API 응답 메시지"));
-
     protected MockMvc mockMvc;
 
     protected static ResponseFieldsSnippet commonResponseFields(FieldDescriptor... descriptors) {
