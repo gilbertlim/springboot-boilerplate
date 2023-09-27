@@ -2,10 +2,11 @@ package com.boilerplate.shop.application.scheduling.demo;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import com.boilerplate.common.config.scheduling.annotation.SchedulingGrouping;
-import com.boilerplate.common.utils.DateTimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
+
+import com.boilerplate.common.config.scheduling.annotation.SchedulingGrouping;
+import com.boilerplate.common.utils.DateTimeUtils;
 
 @Slf4j
 @Component

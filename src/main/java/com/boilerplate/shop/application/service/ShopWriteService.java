@@ -3,6 +3,8 @@ package com.boilerplate.shop.application.service;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
+
 import com.boilerplate.common.event.Events;
 import com.boilerplate.common.exception.DuplicateDataException;
 import com.boilerplate.common.exception.NotFoundException;
@@ -13,7 +15,6 @@ import com.boilerplate.shop.domain.data.entity.Shop;
 import com.boilerplate.shop.domain.event.ShopTierEvent;
 import com.boilerplate.shop.domain.exception.ShopTierException;
 import com.boilerplate.shop.domain.port.repository.ShopRepository;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Transactional

@@ -1,9 +1,10 @@
 package com.boilerplate.shop.infrastructure.adaptor.client;
 
 import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+
 import com.boilerplate.shop.domain.port.client.MemberClient;
 import com.boilerplate.shop.infrastructure.provider.feign.MemberFeignClient;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component

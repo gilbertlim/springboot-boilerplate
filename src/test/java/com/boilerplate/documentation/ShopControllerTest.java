@@ -7,15 +7,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
+
 import com.boilerplate.shop.application.data.dto.request.ShopCreateRequest;
 import com.boilerplate.shop.application.data.dto.response.ShopResponse;
 import com.boilerplate.shop.application.service.ShopReadService;
 import com.boilerplate.shop.application.service.ShopWriteService;
 import com.boilerplate.shop.presentation.controller.ShopController;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;

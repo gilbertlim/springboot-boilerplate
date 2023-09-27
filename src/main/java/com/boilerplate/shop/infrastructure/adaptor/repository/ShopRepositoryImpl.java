@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
+
 import com.boilerplate.shop.domain.data.dto.ShopWithReviewsQuery;
 import com.boilerplate.shop.domain.data.entity.Shop;
 import com.boilerplate.shop.domain.port.repository.ShopRepository;
 import com.boilerplate.shop.infrastructure.provider.mybatis.mapper.ShopMapper;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Repository

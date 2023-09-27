@@ -6,8 +6,9 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.boilerplate.common.config.security.auth.role.RoleType;
 import lombok.RequiredArgsConstructor;
+
+import com.boilerplate.common.config.security.auth.role.RoleType;
 
 
 @RequiredArgsConstructor

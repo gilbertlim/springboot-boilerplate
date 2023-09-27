@@ -13,6 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.boilerplate.common.config.security.auth.TokenRepository;
 import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
 import com.boilerplate.common.config.security.auth.data.dto.TokenRequest;
@@ -20,7 +22,6 @@ import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthent
 import com.boilerplate.common.dto.CommonResponse;
 import com.boilerplate.common.dto.CommonResponseType;
 import com.boilerplate.common.utils.ResponseUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter {
 

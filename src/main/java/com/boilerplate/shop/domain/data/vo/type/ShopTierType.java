@@ -1,8 +1,9 @@
 package com.boilerplate.shop.domain.data.vo.type;
 
-import com.boilerplate.shop.domain.exception.ShopTierException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import com.boilerplate.shop.domain.exception.ShopTierException;
 
 @AllArgsConstructor
 @Getter

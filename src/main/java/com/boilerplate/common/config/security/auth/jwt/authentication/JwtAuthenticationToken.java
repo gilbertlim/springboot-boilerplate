@@ -5,8 +5,9 @@ import java.util.List;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
-import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
 import lombok.Getter;
+
+import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
 
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 

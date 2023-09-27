@@ -24,6 +24,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import com.boilerplate.common.config.security.auth.data.userdetails.LoginMember;
 import com.boilerplate.common.config.security.auth.exception.CustomAccessDeniedHandler;
 import com.boilerplate.common.config.security.auth.exception.CustomAuthenticationEntryPoint;
@@ -31,9 +35,6 @@ import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthent
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationProvider;
 import com.boilerplate.common.config.security.auth.jwt.generation.JwtGenerationFilter;
 import com.boilerplate.common.config.security.auth.role.RoleType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor

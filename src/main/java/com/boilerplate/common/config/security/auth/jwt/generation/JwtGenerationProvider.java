@@ -7,10 +7,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+
 import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
 import com.boilerplate.common.config.security.auth.jwt.JwtProcessor;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationToken;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component

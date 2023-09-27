@@ -2,8 +2,9 @@ package com.boilerplate.shop.infrastructure.provider.mybatis.mapper;
 
 import java.util.List;
 
-import com.boilerplate.shop.domain.event.ShopTierEvent;
 import org.apache.ibatis.annotations.*;
+
+import com.boilerplate.shop.domain.event.ShopTierEvent;
 
 @Mapper
 public interface ShopEventMapper {

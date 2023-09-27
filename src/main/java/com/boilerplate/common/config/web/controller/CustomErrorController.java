@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.boilerplate.common.dto.CommonResponse;
 
 @RequestMapping("${server.error.path:${error.path:/error}}")

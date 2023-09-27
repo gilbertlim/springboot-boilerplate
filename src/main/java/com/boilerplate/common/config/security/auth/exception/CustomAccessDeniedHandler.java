@@ -8,10 +8,11 @@ import java.io.IOException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+
 import com.boilerplate.common.dto.CommonResponse;
 import com.boilerplate.common.dto.CommonResponseType;
 import com.boilerplate.common.utils.ResponseUtils;
-import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor

@@ -6,12 +6,13 @@ import java.util.Optional;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
+
 import com.boilerplate.common.exception.NotFoundException;
 import com.boilerplate.shop.application.data.dto.response.ShopResponse;
 import com.boilerplate.shop.domain.data.dto.ShopWithReviewsQuery;
 import com.boilerplate.shop.domain.port.client.MemberClient;
 import com.boilerplate.shop.domain.port.repository.ShopRepository;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

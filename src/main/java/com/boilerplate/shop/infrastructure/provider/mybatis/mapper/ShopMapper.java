@@ -2,9 +2,10 @@ package com.boilerplate.shop.infrastructure.provider.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.*;
+
 import com.boilerplate.shop.domain.data.dto.ShopWithReviewsQuery;
 import com.boilerplate.shop.domain.data.entity.Shop;
-import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface ShopMapper {

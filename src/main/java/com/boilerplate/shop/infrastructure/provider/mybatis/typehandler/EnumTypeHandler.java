@@ -3,9 +3,10 @@ package com.boilerplate.shop.infrastructure.provider.mybatis.typehandler;
 import java.sql.*;
 import java.util.Arrays;
 
-import com.boilerplate.shop.domain.data.vo.type.ShopTierType;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+
+import com.boilerplate.shop.domain.data.vo.type.ShopTierType;
 
 public class EnumTypeHandler extends BaseTypeHandler<ShopTierType> {
 

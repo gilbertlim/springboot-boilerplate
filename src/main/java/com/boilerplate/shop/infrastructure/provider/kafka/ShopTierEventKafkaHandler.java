@@ -2,13 +2,14 @@ package com.boilerplate.shop.infrastructure.provider.kafka;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import com.boilerplate.shop.domain.event.ShopTierEvent;
-import com.boilerplate.shop.infrastructure.provider.mybatis.mapper.ShopEventMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+
+import com.boilerplate.shop.domain.event.ShopTierEvent;
+import com.boilerplate.shop.infrastructure.provider.mybatis.mapper.ShopEventMapper;
 
 @Slf4j
 @RequiredArgsConstructor
