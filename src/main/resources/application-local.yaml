@@ -1,0 +1,39 @@
+####----------------------------------
+## Server - Servlet Container
+####----------------------------------
+server:
+  port: 8080
+
+
+
+####----------------------------------
+## Spring
+####----------------------------------
+spring:
+  #### DataSource
+  datasource:
+    reader:
+      url: jdbc:log4jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+      username: ENC(UmcH4DEp2csN3vKyCBe+tK/msZ/G09wPfwRRSe8d631MLEPgVvKFuYoJcyUI6egP) # root
+      password: ENC(XeUdy6x9J8kb0IaVdeaDufUm1TYg7PaTv7SqPpAjaezt0tfhZsyot0cCAGBZXmJJ) # 1234
+    writer:
+      url: jdbc:log4jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+      username: ENC(FJEBlhobJCJ48HJp5ruZWKK/y0JvSj3QwLHqKBm8stv6HWJ8vb/QqASBi7iOQwjN) # root
+      password: ENC(DRk07V1Fbetcf2L7u5jzVOTGRJB5F/XGT6O06MAj3/S+eou4lu2eA3DEZbOrgSun) # 1234
+
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 5
+
+  #### Spring Data
+  data:
+    #### Redis
+    redis:
+      host: localhost
+
+  #### Kafka
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092

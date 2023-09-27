@@ -29,18 +29,6 @@ spring:
 
   #### DataSource
   datasource:
-    reader:
-      url: jdbc:log4jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-      username: root
-      password: 1234
-    writer:
-      url: jdbc:log4jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-      username: root
-      password: 1234
-      hikari:
-        minimum-idle: 10
-        maximum-pool-size: 10
-
     hikari:
       minimum-idle: 20
       maximum-pool-size: 20
@@ -59,9 +47,6 @@ spring:
   data:
     #### Redis
     redis:
-      host: localhost
-      #cluster:
-      #  nodes: localhost
       timeout: 500ms
       connect-timeout: 200ms
       lettuce:
@@ -94,11 +79,9 @@ spring:
   #### Kafka
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
-      bootstrap-servers: localhost:9092
       group-id: ${spring.application.name}
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -180,6 +163,11 @@ jwt:
     expiration-time: 1h
   refresh:
     expiration-time: 14d
+
+# 편의상 프로퍼티에 기재. 외부에서 주입 필요
+jasypt:
+  encryptor:
+    password: 1234
 
 
 
