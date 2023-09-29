@@ -1,4 +1,4 @@
-package com.boilerplate.common.config.security.auth.data.dto;
+package com.boilerplate.common.config.security.auth.domain.data.dto;
 
 public record TokenRequest(
 

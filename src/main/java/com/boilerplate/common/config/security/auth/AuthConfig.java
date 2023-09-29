@@ -17,10 +17,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.*;
@@ -28,13 +26,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import com.boilerplate.common.config.security.auth.data.userdetails.LoginMember;
 import com.boilerplate.common.config.security.auth.exception.CustomAccessDeniedHandler;
 import com.boilerplate.common.config.security.auth.exception.CustomAuthenticationEntryPoint;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationFilter;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationProvider;
 import com.boilerplate.common.config.security.auth.jwt.generation.JwtGenerationFilter;
 import com.boilerplate.common.config.security.auth.role.RoleType;
+import com.boilerplate.member.domain.port.repository.MemberRepository;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -47,7 +45,9 @@ public class AuthConfig {
         ALLOWED_REQUEST_MATCHER = RequestMatchers.anyOf(
             AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/docs/**"),
             AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/shops"),
-            AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/shops/*")
+            AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/shops/*"),
+            AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/members")
+
         );
     }
 
@@ -67,9 +67,10 @@ public class AuthConfig {
         CustomAuthenticationEntryPoint entryPoint,
         CustomAccessDeniedHandler accessDeniedHandler,
         TokenRepository tokenRepository,
-        ObjectMapper objectMapper
+        ObjectMapper objectMapper,
+        MemberRepository memberRepository
     ) throws Exception {
-        var jwtGenerationFilter = new JwtGenerationFilter(authenticationManger, objectMapper, tokenRepository);
+        var jwtGenerationFilter = new JwtGenerationFilter(authenticationManger, objectMapper, tokenRepository, memberRepository);
         var jwtAuthFilter = new JwtAuthenticationFilter(ALLOWED_REQUEST_MATCHER, jwtAuthenticationProvider);
 
         return http.csrf(AbstractHttpConfigurer::disable)
@@ -102,15 +103,6 @@ public class AuthConfig {
         var authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         providers.forEach(authenticationManagerBuilder::authenticationProvider);
         return authenticationManagerBuilder.build();
-    }
-
-    @Bean
-    public UserDetailsService memberFixtures() {
-        // TODO: 특정 사용자 찾기 기능 구현
-        LoginMember member = LoginMember.of("member", "{noop}" + "password", RoleType.MEMBER);
-        LoginMember admin = LoginMember.of("admin", "{noop}" + "password", RoleType.ADMIN);
-        return new InMemoryUserDetailsManager(member, admin);
-
     }
 
     @Bean

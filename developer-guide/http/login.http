@@ -6,25 +6,42 @@ Authorization: Bearer {{accessToken}}
 GET localhost:8080/members/admin
 Authorization: Bearer {{accessToken}}
 
-### 멤버 토큰 요청
+
+
+### 회원 가입
+POST localhost:8080/members
+Content-Type: application/json
+
+{
+  "id": "sam@gmail.com",
+  "password": "abcd",
+  "name": "sam",
+  "roles": "MEMBER"
+}
+
+
+
+### 멤버 토큰 요청 (로그인)
 POST localhost:8080/login
 
 {
   "type": "token",
-  "id": "member",
-  "password": "password"
+  "id": "sam@gmail.com",
+  "password": "abcd"
 }
 
-### 어드민 토큰 요청
+### 어드민 토큰 요청 (로그인)
 POST localhost:8080/login
 
 {
   "type": "token",
-  "id": "admin",
-  "password": "password"
+  "id": "gilbert@gmail.com",
+  "password": "123456"
 }
 
-### 리프레시 토큰 요청
+
+
+### 리프레시 토큰 요청 (로그인)
 POST localhost:8080/login
 
 {

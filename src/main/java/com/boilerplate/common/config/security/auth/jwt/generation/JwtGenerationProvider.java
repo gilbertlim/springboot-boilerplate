@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
 
-import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
+import com.boilerplate.common.config.security.auth.domain.data.dto.TokenPair;
 import com.boilerplate.common.config.security.auth.jwt.JwtProcessor;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationToken;
 

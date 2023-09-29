@@ -16,26 +16,31 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.boilerplate.common.config.security.auth.TokenRepository;
-import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
-import com.boilerplate.common.config.security.auth.data.dto.TokenRequest;
+import com.boilerplate.common.config.security.auth.domain.data.dto.TokenPair;
+import com.boilerplate.common.config.security.auth.domain.data.dto.TokenRequest;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationToken;
 import com.boilerplate.common.dto.CommonResponse;
 import com.boilerplate.common.dto.CommonResponseType;
 import com.boilerplate.common.utils.ResponseUtils;
+import com.boilerplate.member.domain.port.repository.MemberRepository;
 
 public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter {
 
     private final ObjectMapper objectMapper;
     private final TokenRepository tokenRepository;
 
+    private final MemberRepository memberRepository;
+
     public JwtGenerationFilter(
         AuthenticationManager authenticationManager,
         ObjectMapper objectMapper,
-        TokenRepository tokenRepository
+        TokenRepository tokenRepository,
+        MemberRepository memberRepository
     ) {
         super("/login", authenticationManager);
         this.objectMapper = objectMapper;
         this.tokenRepository = tokenRepository;
+        this.memberRepository = memberRepository;
     }
 
     @Override
@@ -66,6 +71,7 @@ public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter 
         ResponseUtils.setResponse(response, HttpStatus.OK, body);
 
         tokenRepository.save(tokenPair);
+        memberRepository.updateLastLoginDateTime(authenticationToken.getName());
     }
 
     @Override

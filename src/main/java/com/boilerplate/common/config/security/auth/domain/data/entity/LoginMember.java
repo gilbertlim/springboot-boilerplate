@@ -1,4 +1,4 @@
-package com.boilerplate.common.config.security.auth.data.userdetails;
+package com.boilerplate.common.config.security.auth.domain.data.entity;
 
 import java.util.Arrays;
 import java.util.List;

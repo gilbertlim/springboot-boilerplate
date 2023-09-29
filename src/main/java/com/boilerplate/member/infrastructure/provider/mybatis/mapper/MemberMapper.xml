@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boilerplate.member.infrastructure.provider.mybatis.mapper.MemberMapper">
+	<resultMap id="memberRowMapper" type="Member">
+		<result property="code" column="member_code" />
+		<result property="id" column="member_id" />
+		<result property="password" column="member_pw" />
+		<result property="name" column="member_nm" />
+		<result property="roles" column="member_roles" />
+		<result property="lastLoginDateTime" column="last_lgn_dttm" />
+		<result property="registrationDateTime" column="member_reg_dttm" />
+	</resultMap>
+</mapper>

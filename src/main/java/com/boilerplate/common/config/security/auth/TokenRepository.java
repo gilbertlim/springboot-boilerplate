@@ -6,10 +6,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Component;
 
-import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
+import com.boilerplate.common.config.security.auth.domain.data.dto.TokenPair;
 
 @Component
 public class TokenRepository {
+    //TODO: redis 혹은 db로 구현
 
     private final Map<String, String> store = new ConcurrentHashMap<>();
 

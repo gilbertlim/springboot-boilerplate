@@ -1,27 +1,41 @@
 -- Data
-CREATE TABLE shop (
-    shop_id             INT PRIMARY KEY AUTO_INCREMENT,
-    shop_name           VARCHAR(255) NOT NULL,
-    shop_address        VARCHAR(255) NOT NULL,
-    shop_detail_address VARCHAR(255) NOT NULL,
-    shop_tier           VARCHAR(255) NOT NULL,
-    shop_tier_code      VARCHAR(255) NOT NULL
-) DEFAULT CHARSET=utf8mb4;
+create table shop (
+    shop_id             int primary key auto_increment,
+    shop_name           varchar(255) not null,
+    shop_address        varchar(255) not null,
+    shop_detail_address varchar(255) not null,
+    shop_tier           varchar(255) not null,
+    shop_tier_code      varchar(255) not null
+) default charset = utf8mb4;
 
-CREATE TABLE review (
-    review_id         INT PRIMARY KEY AUTO_INCREMENT,
-    review_contents   VARCHAR(255) NOT NULL,
-    shop_id           INT,
-    FOREIGN KEY (shop_id) REFERENCES shop(shop_id)
-) DEFAULT CHARSET=utf8mb4;
+create table review (
+    review_id       int primary key auto_increment,
+    review_contents varchar(255) not null,
+    shop_id         int,
+    foreign key (shop_id) references shop (shop_id)
+) default charset = utf8mb4;
 
-CREATE TABLE event_outbox_shop (
-    event_id          INT PRIMARY KEY AUTO_INCREMENT,
-    domain_id         INT NOT NULL,
-    event_type        VARCHAR(50),
-    published         CHAR(1) NOT NULL DEFAULT 'N',
-    published_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+create table event_outbox_shop (
+    event_id     int primary key auto_increment,
+    domain_id    int     not null,
+    event_type   varchar(50),
+    published    char(1) not null default 'N',
+    published_at timestamp        default CURRENT_TIMESTAMP
 );
+
+create table member (
+    member_code     int primary key auto_increment,
+    member_id       varchar(50),
+    member_pw       varchar(500),
+    member_nm       varchar(100),
+    member_roles    varchar(100),
+    last_lgn_dttm   datetime,
+    member_reg_dttm timestamp default CURRENT_TIMESTAMP
+);
+
+insert into member (member_id, member_pw, member_nm, member_roles, last_lgn_dttm)
+values ('gilbert@gmail.com', '{bcrypt}$2a$10$1oe1gAvqpGJZhtiZZJl2POekuUtXm2YBWiTuA1YDqf0MJXOPH.xwm', 'gilbert', 'ADMIN', null);
+
 
 insert into shop (shop_name, shop_address, shop_detail_address, shop_tier, shop_tier_code)
 values ('Shop A', '서울시 송파구 동남로 191', '101동 1101호', 'Bronze', 'B'),
@@ -41,3 +55,4 @@ insert into review (review_contents, shop_id)
 values ('좋아요', 1),
        ('싫어요', 1),
        ('나가주세요', 1);
+

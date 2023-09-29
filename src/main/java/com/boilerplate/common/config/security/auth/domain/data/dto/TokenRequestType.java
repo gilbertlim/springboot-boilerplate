@@ -1,4 +1,4 @@
-package com.boilerplate.common.config.security.auth.data.dto;
+package com.boilerplate.common.config.security.auth.domain.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

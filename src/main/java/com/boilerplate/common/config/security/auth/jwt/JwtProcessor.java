@@ -11,7 +11,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.RequiredArgsConstructor;
 
-import com.boilerplate.common.config.security.auth.data.dto.TokenPair;
+import com.boilerplate.common.config.security.auth.domain.data.dto.TokenPair;
 
 @RequiredArgsConstructor
 @Component
@@ -38,7 +38,7 @@ public class JwtProcessor {
             .withIssuedAt(now)
             .withExpiresAt(expiredDate)
             .withClaim("id", id)
-            .withClaim("role", authorities.stream().map(GrantedAuthority::getAuthority).toList())
+            .withClaim("roles", authorities.stream().map(GrantedAuthority::getAuthority).toList())
             .sign(Algorithm.HMAC512(jwtProperties.secretKey()));
     }
 
@@ -49,7 +49,7 @@ public class JwtProcessor {
     }
 
     public List<? extends GrantedAuthority> getAuthorities(String token) {
-        List<String> roles = JWT.decode(token).getClaim("role").asList(String.class);
+        List<String> roles = JWT.decode(token).getClaim("roles").asList(String.class);
         return AuthorityUtils.createAuthorityList(roles);
     }
 
