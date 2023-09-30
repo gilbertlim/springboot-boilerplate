@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.boilerplate.common.config.security.auth.exception.CustomAccessDeniedHandler;
 import com.boilerplate.common.config.security.auth.exception.CustomAuthenticationEntryPoint;
+import com.boilerplate.common.config.security.auth.jwt.JwtProperties;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationFilter;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationProvider;
 import com.boilerplate.common.config.security.auth.jwt.generation.JwtGenerationFilter;
@@ -66,11 +68,12 @@ public class AuthConfig {
         AuthenticationManager authenticationManger,
         CustomAuthenticationEntryPoint entryPoint,
         CustomAccessDeniedHandler accessDeniedHandler,
-        TokenRepository tokenRepository,
+        RedisTemplate<String, Object> redisTemplate,
         ObjectMapper objectMapper,
-        MemberRepository memberRepository
+        MemberRepository memberRepository,
+        JwtProperties jwtProperties
     ) throws Exception {
-        var jwtGenerationFilter = new JwtGenerationFilter(authenticationManger, objectMapper, tokenRepository, memberRepository);
+        var jwtGenerationFilter = new JwtGenerationFilter(authenticationManger, objectMapper, redisTemplate, memberRepository, jwtProperties);
         var jwtAuthFilter = new JwtAuthenticationFilter(ALLOWED_REQUEST_MATCHER, jwtAuthenticationProvider);
 
         return http.csrf(AbstractHttpConfigurer::disable)

@@ -34,8 +34,8 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
         return new JwtAuthenticationToken(principal, tokenPair, grantedAuthorities, true);
     }
 
-    public static JwtAuthenticationToken refreshToken(String refreshToken) {
-        return new JwtAuthenticationToken(null, new TokenPair("", refreshToken), null, true);
+    public static JwtAuthenticationToken refreshToken(String principal, String refreshToken) {
+        return new JwtAuthenticationToken(principal, new TokenPair("", refreshToken), null, true);
     }
 
     public static JwtAuthenticationToken unauthenticatedToken() {

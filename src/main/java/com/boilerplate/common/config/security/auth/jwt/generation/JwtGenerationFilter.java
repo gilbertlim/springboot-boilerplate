@@ -5,6 +5,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,9 +17,9 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.boilerplate.common.config.security.auth.TokenRepository;
 import com.boilerplate.common.config.security.auth.domain.data.dto.TokenPair;
 import com.boilerplate.common.config.security.auth.domain.data.dto.TokenRequest;
+import com.boilerplate.common.config.security.auth.jwt.JwtProperties;
 import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthenticationToken;
 import com.boilerplate.common.dto.CommonResponse;
 import com.boilerplate.common.dto.CommonResponseType;
@@ -27,20 +29,23 @@ import com.boilerplate.member.domain.port.repository.MemberRepository;
 public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter {
 
     private final ObjectMapper objectMapper;
-    private final TokenRepository tokenRepository;
-
+    private final RedisTemplate<String, Object> redisTemplate;
     private final MemberRepository memberRepository;
+
+    private final JwtProperties jwtProperties;
 
     public JwtGenerationFilter(
         AuthenticationManager authenticationManager,
         ObjectMapper objectMapper,
-        TokenRepository tokenRepository,
-        MemberRepository memberRepository
+        RedisTemplate<String, Object> redisTemplate,
+        MemberRepository memberRepository,
+        JwtProperties jwtProperties
     ) {
         super("/login", authenticationManager);
         this.objectMapper = objectMapper;
-        this.tokenRepository = tokenRepository;
+        this.redisTemplate = redisTemplate;
         this.memberRepository = memberRepository;
+        this.jwtProperties = jwtProperties;
     }
 
     @Override
@@ -58,7 +63,7 @@ public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter 
 
     private Authentication createAuthenticationFrom(TokenRequest tokenRequest) {
         if (tokenRequest.isRefreshRequest()) {
-            return JwtAuthenticationToken.refreshToken(tokenRequest.refreshToken());
+            return JwtAuthenticationToken.refreshToken(tokenRequest.id(), tokenRequest.refreshToken());
         }
         return new UsernamePasswordAuthenticationToken(tokenRequest.id(), tokenRequest.password());
     }
@@ -70,7 +75,9 @@ public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter 
         var body = CommonResponse.ok(tokenPair).getBody();
         ResponseUtils.setResponse(response, HttpStatus.OK, body);
 
-        tokenRepository.save(tokenPair);
+        ValueOperations<String, Object> values = redisTemplate.opsForValue();
+        values.set(authenticationToken.getName(), tokenPair, jwtProperties.refresh().expirationTime());
+
         memberRepository.updateLastLoginDateTime(authenticationToken.getName());
     }
 
