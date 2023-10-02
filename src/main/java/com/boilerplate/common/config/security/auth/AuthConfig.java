@@ -68,7 +68,7 @@ public class AuthConfig {
         AuthenticationManager authenticationManger,
         CustomAuthenticationEntryPoint entryPoint,
         CustomAccessDeniedHandler accessDeniedHandler,
-        RedisTemplate<String, Object> redisTemplate,
+        RedisTemplate<String, String> redisTemplate,
         ObjectMapper objectMapper,
         MemberRepository memberRepository,
         JwtProperties jwtProperties

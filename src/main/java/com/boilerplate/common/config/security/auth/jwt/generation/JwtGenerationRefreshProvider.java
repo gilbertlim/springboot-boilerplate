@@ -1,14 +1,13 @@
 package com.boilerplate.common.config.security.auth.jwt.generation;
 
+import java.util.Optional;
+
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +20,6 @@ import com.boilerplate.common.config.security.auth.jwt.authentication.JwtAuthent
 @Component
 public class JwtGenerationRefreshProvider implements AuthenticationProvider {
 
-    private final ObjectMapper objectMapper;
     private final JwtProcessor jwtProcessor;
     private final RedisTemplate<String, String> redisTemplate;
 
@@ -30,29 +28,10 @@ public class JwtGenerationRefreshProvider implements AuthenticationProvider {
         JwtAuthenticationToken authenticationToken = (JwtAuthenticationToken) authentication;
 
         ValueOperations<String, String> values = redisTemplate.opsForValue();
-        String result = values.get(authenticationToken.getName());
-        String errorMsg = "";
 
-        if (!StringUtils.hasText(result)) {
-            errorMsg = "갱신정보가 없습니다.";
-            log.error(errorMsg);
-            throw new BadCredentialsException(errorMsg);
-        }
+        String existedAccessToken = Optional.ofNullable(values.get(authenticationToken.getTokenPair().refreshToken()))
+            .orElseThrow(() -> new BadCredentialsException("갱신정보가 없습니다."));
 
-        TokenPair existedTokenPair;
-        try {
-            existedTokenPair = objectMapper.readValue(result, TokenPair.class);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Json 파싱 오류");
-        }
-
-        if (!existedTokenPair.refreshToken().equals(authenticationToken.getTokenPair().refreshToken())) {
-            errorMsg = "갱신 정보가 올바르지 않습니다.";
-            log.error(errorMsg);
-            throw new BadCredentialsException(errorMsg);
-        }
-
-        String existedAccessToken = existedTokenPair.accessToken();
         String id = jwtProcessor.getId(existedAccessToken);
         var roles = jwtProcessor.getAuthorities(existedAccessToken);
 

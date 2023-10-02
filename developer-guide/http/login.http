@@ -46,6 +46,5 @@ POST localhost:8080/login
 
 {
   "type": "refresh",
-  "id": "{{memberId}}",
   "refreshToken": {{refreshToken}}"
 }

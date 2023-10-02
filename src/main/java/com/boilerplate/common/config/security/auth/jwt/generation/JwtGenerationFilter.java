@@ -29,7 +29,7 @@ import com.boilerplate.member.domain.port.repository.MemberRepository;
 public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter {
 
     private final ObjectMapper objectMapper;
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
     private final MemberRepository memberRepository;
 
     private final JwtProperties jwtProperties;
@@ -37,7 +37,7 @@ public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter 
     public JwtGenerationFilter(
         AuthenticationManager authenticationManager,
         ObjectMapper objectMapper,
-        RedisTemplate<String, Object> redisTemplate,
+        RedisTemplate<String, String> redisTemplate,
         MemberRepository memberRepository,
         JwtProperties jwtProperties
     ) {
@@ -75,8 +75,8 @@ public class JwtGenerationFilter extends AbstractAuthenticationProcessingFilter 
         var body = CommonResponse.ok(tokenPair).getBody();
         ResponseUtils.setResponse(response, HttpStatus.OK, body);
 
-        ValueOperations<String, Object> values = redisTemplate.opsForValue();
-        values.set(authenticationToken.getName(), tokenPair, jwtProperties.refresh().expirationTime());
+        ValueOperations<String, String> values = redisTemplate.opsForValue();
+        values.set(tokenPair.refreshToken(), tokenPair.accessToken(), jwtProperties.refresh().expirationTime());
 
         memberRepository.updateLastLoginDateTime(authenticationToken.getName());
     }

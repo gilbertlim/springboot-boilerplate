@@ -160,9 +160,9 @@ scheduling:
 jwt:
   secret-key: ${SECRET_KEY}
   access:
-    expiration-time: 1h
+    expiration-time: 10s
   refresh:
-    expiration-time: 14d
+    expiration-time: 1m
 
 # 편의상 프로퍼티에 기재. 외부에서 주입 필요
 jasypt:
